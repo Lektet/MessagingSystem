@@ -5,6 +5,7 @@
 const QString TYPE_KEY = "Type";
 
 SimpleMessage::SimpleMessage(MessageType type) :
+    JsonSerializable(),
     messageType(type)
 {
 

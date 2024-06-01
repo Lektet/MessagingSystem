@@ -1,7 +1,7 @@
 #ifndef SENDMESSAGERESPONSEMESSAGE_H
 #define SENDMESSAGERESPONSEMESSAGE_H
 
-#include "SimpleMessage.h"
+#include "SimpleResponseMessage.h"
 
 enum class Result;
 
@@ -9,8 +9,8 @@ class SendMessageResponseMessage : public SimpleMessage
 {
 public:
     SendMessageResponseMessage();
+    SendMessageResponseMessage(Result result);
 
-    void setResult(Result result);
     Result getResult() const;
 
 protected:

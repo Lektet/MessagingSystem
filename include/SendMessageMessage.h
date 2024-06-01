@@ -7,16 +7,16 @@ class SendMessageMessage : public SimpleMessage
 {
 public:
     SendMessageMessage();
+    SendMessageMessage(const QJsonObject& data);
 
-    void setMessageData(const QString& data);
-    QString getMessageData() const;
+    QJsonObject getMessageData() const;
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;
     virtual bool initFromRootObject(const QJsonObject &rootObj) override;
 
 private:
-    QString messageData;
+    QJsonObject messageData;
 };
 
 #endif // SENDMESSAGEMESSAGE_H

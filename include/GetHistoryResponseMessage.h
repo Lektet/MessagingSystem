@@ -3,22 +3,24 @@
 
 #include "SimpleMessage.h"
 
+#include "QJsonArray"
+
 enum class MessageType;
 
 class GetHistoryResponseMessage : public SimpleMessage
 {
 public:
     GetHistoryResponseMessage();
+    GetHistoryResponseMessage(const QJsonArray& messages);
 
-    void setMessages(const QString& messages);
-    QString getMessagesHistory() const;
+    QJsonArray getMessagesHistory() const;
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;
     virtual bool initFromRootObject(const QJsonObject &rootObj) override;
 
 private:
-    QString messagesHistory;
+    QJsonArray messagesHistory;
 };
 
 #endif // GETHISTORYRESPONSEMESSAGE_H

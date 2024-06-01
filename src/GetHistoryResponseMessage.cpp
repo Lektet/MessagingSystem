@@ -10,18 +10,21 @@ GetHistoryResponseMessage::GetHistoryResponseMessage() :
 
 }
 
-void GetHistoryResponseMessage::setMessages(const QString &messages)
+GetHistoryResponseMessage::GetHistoryResponseMessage(const QJsonArray &messages) :
+    SimpleMessage(MessageType::GetHistoryResponse),
+    messagesHistory(messages)
 {
-    messagesHistory = messages;
+
 }
 
-QString GetHistoryResponseMessage::getMessagesHistory() const
+QJsonArray GetHistoryResponseMessage::getMessagesHistory() const
 {
     return messagesHistory;
 }
 
 void GetHistoryResponseMessage::initRootObject(QJsonObject &rootObj)
 {
+    SimpleMessage::initRootObject(rootObj);
     rootObj.insert(MESSAGES_KEY, messagesHistory);
 }
 
@@ -29,6 +32,7 @@ bool GetHistoryResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     auto initSuccessful = SimpleMessage::initFromRootObject(rootObj);
     if(!initSuccessful){
+        qDebug() << "Parent init failed";
         return false;
     }
 
@@ -37,6 +41,11 @@ bool GetHistoryResponseMessage::initFromRootObject(const QJsonObject &rootObj)
         return false;
     }
 
-    messagesHistory = rootObj.value(MESSAGES_KEY).toString();
+    if(!rootObj.value(MESSAGES_KEY).isArray()){
+        qDebug() << "Wrong messages format";
+        return false;
+    }
+
+    messagesHistory = rootObj.value(MESSAGES_KEY).toArray();
     return true;
 }

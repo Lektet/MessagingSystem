@@ -6,10 +6,11 @@
 enum class NotificationType;
 
 class NotificationMessage : public SimpleMessage
-{
-    NotificationMessage();
-
+{    
 public:
+    NotificationMessage();
+    NotificationMessage(NotificationType type);
+
     void setNotificationType(NotificationType type);
     NotificationType getNotificationType() const;
 

@@ -1,8 +1,23 @@
 #include "NotificationMessage.h"
 
+#include "MessageType.h"
 #include "NotificationType.h"
 
 const QString NOTIFICATION_TYPE_KEY = "NotificationType";
+
+NotificationMessage::NotificationMessage() :
+    SimpleMessage(MessageType::Notification),
+    notificationType(NotificationType::Invalid)
+{
+
+}
+
+NotificationMessage::NotificationMessage(NotificationType type) :
+    SimpleMessage(MessageType::Notification),
+    notificationType(type)
+{
+
+}
 
 void NotificationMessage::setNotificationType(NotificationType type)
 {
@@ -16,6 +31,7 @@ NotificationType NotificationMessage::getNotificationType() const
 
 void NotificationMessage::initRootObject(QJsonObject &rootObj)
 {
+    SimpleMessage::initRootObject(rootObj);
     rootObj.insert(NOTIFICATION_TYPE_KEY, notificationTypeToString(notificationType));
 }
 
@@ -23,6 +39,7 @@ bool NotificationMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     auto initSuccessful = SimpleMessage::initFromRootObject(rootObj);
     if(!initSuccessful){
+        qDebug() << "Parent init failed";
         return false;
     }
 

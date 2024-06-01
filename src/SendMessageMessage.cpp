@@ -10,18 +10,21 @@ SendMessageMessage::SendMessageMessage() :
 
 }
 
-void SendMessageMessage::setMessageData(const QString &data)
+SendMessageMessage::SendMessageMessage(const QJsonObject &data) :
+    SimpleMessage(MessageType::SendMessage),
+    messageData(data)
 {
-    messageData = data;
+
 }
 
-QString SendMessageMessage::getMessageData() const
+QJsonObject SendMessageMessage::getMessageData() const
 {
     return messageData;
 }
 
 void SendMessageMessage::initRootObject(QJsonObject &rootObj)
 {
+    SimpleMessage::initRootObject(rootObj);
     rootObj.insert(MESSAGE_KEY, messageData);
 }
 
@@ -29,6 +32,7 @@ bool SendMessageMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     auto initSuccessful = SimpleMessage::initFromRootObject(rootObj);
     if(!initSuccessful){
+        qDebug() << "Parent init failed";
         return false;
     }
 
@@ -37,6 +41,6 @@ bool SendMessageMessage::initFromRootObject(const QJsonObject &rootObj)
         return false;
     }
 
-    messageData = rootObj.value(MESSAGE_KEY).toString();
+    messageData = rootObj.value(MESSAGE_KEY).toObject();
     return true;
 }

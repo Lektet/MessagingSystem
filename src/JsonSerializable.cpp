@@ -1,13 +1,13 @@
-#include "AbstractMessage.h"
+#include "JsonSerializable.h"
 
 #include <QDebug>
 
-AbstractMessage::AbstractMessage()
+JsonSerializable::JsonSerializable()
 {
 
 }
 
-QJsonDocument AbstractMessage::toJson()
+QJsonDocument JsonSerializable::toJson()
 {
     QJsonObject object;
     initRootObject(object);
@@ -18,7 +18,7 @@ QJsonDocument AbstractMessage::toJson()
     return document;
 }
 
-bool AbstractMessage::fromJson(const QJsonDocument &doc)
+bool JsonSerializable::fromJson(const QJsonDocument &doc)
 {
     if(!doc.isObject()){
         qDebug() << "JSON document is not object";

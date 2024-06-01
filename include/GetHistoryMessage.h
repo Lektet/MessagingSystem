@@ -7,6 +7,7 @@ enum class MessageType;
 
 class GetHistoryMessage : public SimpleMessage
 {
+
 public:
     GetHistoryMessage();
 

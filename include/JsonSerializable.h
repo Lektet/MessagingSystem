@@ -4,10 +4,10 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-struct AbstractMessage
+struct JsonSerializable
 {
 public:
-    explicit AbstractMessage();
+    explicit JsonSerializable();
 
     virtual QJsonDocument toJson();
     virtual bool fromJson(const QJsonDocument &doc);

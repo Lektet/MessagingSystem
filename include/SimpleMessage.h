@@ -1,11 +1,11 @@
 #ifndef SIMPLEMESSAGE_H
 #define SIMPLEMESSAGE_H
 
-#include "AbstractMessage.h"
+#include "JsonSerializable.h"
 
 enum class MessageType;
 
-class SimpleMessage : public AbstractMessage
+class SimpleMessage : public JsonSerializable
 {
 public:
     SimpleMessage(MessageType type);

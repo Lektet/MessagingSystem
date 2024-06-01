@@ -11,9 +11,11 @@ SendMessageResponseMessage::SendMessageResponseMessage() :
 
 }
 
-void SendMessageResponseMessage::setResult(Result result)
+SendMessageResponseMessage::SendMessageResponseMessage(Result result) :
+    SimpleMessage(MessageType::SendMessageResponse),
+    sendMessageResult(result)
 {
-    sendMessageResult = result;
+
 }
 
 Result SendMessageResponseMessage::getResult() const
@@ -23,6 +25,7 @@ Result SendMessageResponseMessage::getResult() const
 
 void SendMessageResponseMessage::initRootObject(QJsonObject &rootObj)
 {
+    SimpleMessage::initRootObject(rootObj);
     rootObj.insert(REQUEST_RESULT, resultToString(sendMessageResult));
 }
 
@@ -30,6 +33,7 @@ bool SendMessageResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     auto initSuccessful = SimpleMessage::initFromRootObject(rootObj);
     if(!initSuccessful){
+        qDebug() << "Parent init failed";
         return false;
     }
 
