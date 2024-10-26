@@ -12,6 +12,7 @@ public:
     SendMessageResponseMessage(Result result);
 
     Result getResult() const;
+    void setResult(Result result);
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;

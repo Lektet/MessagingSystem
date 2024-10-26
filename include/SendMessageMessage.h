@@ -3,20 +3,23 @@
 
 #include "SimpleMessage.h"
 
+#include "NewChatMessageData.h"
+
 class SendMessageMessage : public SimpleMessage
 {
 public:
-    SendMessageMessage();
-    SendMessageMessage(const QJsonObject& data);
+    SendMessageMessage(const NewChatMessageData& chatMessageData = NewChatMessageData());
 
-    QJsonObject getMessageData() const;
+    QString getMessageUsername() const;
+    QString getMessageText() const;    
+    NewChatMessageData getChatMessageData() const;
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;
     virtual bool initFromRootObject(const QJsonObject &rootObj) override;
 
 private:
-    QJsonObject messageData;
+    NewChatMessageData messageData;
 };
 
 #endif // SENDMESSAGEMESSAGE_H

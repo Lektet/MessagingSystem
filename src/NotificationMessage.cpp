@@ -39,12 +39,12 @@ bool NotificationMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     auto initSuccessful = SimpleMessage::initFromRootObject(rootObj);
     if(!initSuccessful){
-        qDebug() << "Parent init failed";
+        qWarning() << "Parent init failed";
         return false;
     }
 
     if(!rootObj.contains(NOTIFICATION_TYPE_KEY)){
-        qDebug() << "JSON root object contains no type";
+        qWarning() << "JSON root object contains no type";
         return false;
     }
 

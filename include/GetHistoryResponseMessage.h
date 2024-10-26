@@ -3,24 +3,24 @@
 
 #include "SimpleMessage.h"
 
-#include "QJsonArray"
+#include <vector>
 
-enum class MessageType;
+#include "ChatMessageData.h"
 
 class GetHistoryResponseMessage : public SimpleMessage
 {
 public:
     GetHistoryResponseMessage();
-    GetHistoryResponseMessage(const QJsonArray& messages);
+    GetHistoryResponseMessage(std::vector<ChatMessageData> messagesHistory);
 
-    QJsonArray getMessagesHistory() const;
+    std::vector<ChatMessageData> getMessagesHistory() const;
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;
     virtual bool initFromRootObject(const QJsonObject &rootObj) override;
 
 private:
-    QJsonArray messagesHistory;
+    std::vector<ChatMessageData> messages;
 };
 
 #endif // GETHISTORYRESPONSEMESSAGE_H

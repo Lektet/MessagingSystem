@@ -24,7 +24,7 @@ void SimpleMessage::initRootObject(QJsonObject &rootObj)
 bool SimpleMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     if(!rootObj.contains(TYPE_KEY)){
-        qDebug() << "JSON root object contains no type";
+        qWarning() << "JSON root object contains no type";
         return false;
     }
 

@@ -21,7 +21,7 @@ QJsonDocument JsonSerializable::toJson()
 bool JsonSerializable::fromJson(const QJsonDocument &doc)
 {
     if(!doc.isObject()){
-        qDebug() << "JSON document is not object";
+        qWarning() << "JSON document is not object";
         return false;
     }
 

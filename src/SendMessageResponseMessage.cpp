@@ -23,6 +23,11 @@ Result SendMessageResponseMessage::getResult() const
     return sendMessageResult;
 }
 
+void SendMessageResponseMessage::setResult(Result result)
+{
+    sendMessageResult = result;
+}
+
 void SendMessageResponseMessage::initRootObject(QJsonObject &rootObj)
 {
     SimpleMessage::initRootObject(rootObj);
@@ -33,12 +38,12 @@ bool SendMessageResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     auto initSuccessful = SimpleMessage::initFromRootObject(rootObj);
     if(!initSuccessful){
-        qDebug() << "Parent init failed";
+        qWarning() << "Parent init failed";
         return false;
     }
 
     if(!rootObj.contains(REQUEST_RESULT)){
-        qDebug() << "JSON root object contains no result";
+        qWarning() << "JSON root object contains no result";
         return false;
     }
 
