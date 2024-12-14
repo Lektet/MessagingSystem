@@ -22,5 +22,5 @@ QString messageTypeToString(const MessageType val)
 
 MessageType messageTypeFromString(const QString &requestType)
 {
-    return keyFromStringValue(requestTypeStrings, requestType, MessageType::Invalid);
+    return searchMapByValue(requestTypeStrings, requestType, MessageType::Invalid);
 }

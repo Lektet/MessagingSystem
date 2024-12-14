@@ -70,18 +70,18 @@ std::shared_ptr<SimpleMessage> MessageUtils::createMessageFromJson(const QJsonDo
 MessageType MessageUtils::getMessageType(const QJsonDocument &document)
 {
     if(!document.isObject()){
-        qDebug() << "Json document is invalid";
+        qWarning() << "Json document is invalid";
         return MessageType::Invalid;
     }
 
     auto object = document.object();
     if(object.isEmpty()){
-        qDebug() << "Invalid JSON";
+        qWarning() << "Invalid JSON";
         return MessageType::Invalid;
     }
 
     if(!object.contains(TYPE_KEY)){
-        qDebug() << "JSON object is invalid";
+        qWarning() << "JSON object is invalid";
         return MessageType::Invalid;
     }
 

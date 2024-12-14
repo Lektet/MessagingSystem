@@ -17,5 +17,5 @@ QString resultToString(const Result val)
 
 Result resultFromString(const QString &result)
 {
-    return keyFromStringValue(resultStrings, result, Result::Invalid);
+    return searchMapByValue(resultStrings, result, Result::Invalid);
 }

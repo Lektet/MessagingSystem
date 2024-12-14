@@ -18,5 +18,5 @@ QString notificationTypeToString(const NotificationType val)
 
 NotificationType notificationTypeFromString(const QString &notificationType)
 {
-    return keyFromStringValue(notificationTypeStrings, notificationType, NotificationType::Invalid);
+    return searchMapByValue(notificationTypeStrings, notificationType, NotificationType::Invalid);
 }
