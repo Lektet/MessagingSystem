@@ -7,8 +7,8 @@ enum class MessageType{
     Invalid,
     GetHistory,
     GetHistoryResponse,
-    SendMessage,
-    SendMessageResponse,
+    AddMessage,
+    AddMessageResponse,
     Notification
 };
 

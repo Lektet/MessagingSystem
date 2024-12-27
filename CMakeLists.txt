@@ -13,33 +13,33 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Network REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network REQUIRED)
 
 add_library(MessagingSystem STATIC
-  include/ChatMessageData.h
-  include/GetHistoryMessage.h
-  include/GetHistoryResponseMessage.h
-  include/JsonSerializable.h
-  include/MessageType.h
-  include/MessageUtils.h
-  include/NewChatMessageData.h
-  include/NotificationMessage.h
-  include/NotificationType.h
-  include/Result.h
-  include/SendMessageMessage.h
-  include/SendMessageResponseMessage.h
-  include/SimpleMessage.h
-  src/ChatMessageData.cpp
-  src/GetHistoryMessage.cpp
-  src/GetHistoryResponseMessage.cpp
-  src/JsonSerializable.cpp
-  src/MessageType.cpp
-  src/MessageUtils.cpp
-  src/NewChatMessageData.cpp
-  src/NotificationMessage.cpp
-  src/NotificationType.cpp
-  src/SendMessageMessage.cpp
-  src/SendMessageResponseMessage.cpp
-  src/SimpleMessage.cpp
-  src/Result.cpp
-  src/utils.h
+    include/AddMessageMessage.h
+    include/AddMessageResponseMessage.h
+    include/ChatMessageData.h
+    include/GetHistoryMessage.h
+    include/GetHistoryResponseMessage.h
+    include/JsonSerializable.h
+    include/MessageType.h
+    include/MessageUtils.h
+    include/NewChatMessageData.h
+    include/NotificationMessage.h
+    include/NotificationType.h
+    include/Result.h
+    include/SimpleMessage.h
+    include/utils.h
+    src/AddMessageMessage.cpp
+    src/AddMessageResponseMessage.cpp
+    src/ChatMessageData.cpp
+    src/GetHistoryMessage.cpp
+    src/GetHistoryResponseMessage.cpp
+    src/JsonSerializable.cpp
+    src/MessageType.cpp
+    src/MessageUtils.cpp
+    src/NewChatMessageData.cpp
+    src/NotificationMessage.cpp
+    src/NotificationType.cpp
+    src/SimpleMessage.cpp
+    src/Result.cpp
 )
 
 target_include_directories(MessagingSystem PUBLIC include/)

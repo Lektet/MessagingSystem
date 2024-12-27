@@ -1,4 +1,4 @@
-#include "SendMessageMessage.h"
+#include "AddMessageMessage.h"
 
 #include "MessageType.h"
 
@@ -6,29 +6,29 @@ const QString MESSAGE_OBJECT_KEY = "MessageObject";
 const QString MESSAGE_USERNAME_KEY = "Username";
 const QString MESSAGE_TEXT_KEY = "Text";
 
-SendMessageMessage::SendMessageMessage(const NewChatMessageData& chatMessageData) :
-    SimpleMessage(MessageType::SendMessage),
+AddMessageMessage::AddMessageMessage(const NewChatMessageData& chatMessageData) :
+    SimpleMessage(MessageType::AddMessage),
     messageData(chatMessageData)
 {
 
 }
 
-QString SendMessageMessage::getMessageUsername() const
+QString AddMessageMessage::getMessageUsername() const
 {
     return messageData.username;
 }
 
-QString SendMessageMessage::getMessageText() const
+QString AddMessageMessage::getMessageText() const
 {
     return messageData.text;
 }
 
-NewChatMessageData SendMessageMessage::getChatMessageData() const
+NewChatMessageData AddMessageMessage::getChatMessageData() const
 {
     return messageData;
 }
 
-void SendMessageMessage::initRootObject(QJsonObject &rootObj)
+void AddMessageMessage::initRootObject(QJsonObject &rootObj)
 {
     SimpleMessage::initRootObject(rootObj);
 
@@ -37,10 +37,9 @@ void SendMessageMessage::initRootObject(QJsonObject &rootObj)
     messageObject.insert(MESSAGE_TEXT_KEY, messageData.text);
 
     rootObj.insert(MESSAGE_OBJECT_KEY, messageObject);
-
 }
 
-bool SendMessageMessage::initFromRootObject(const QJsonObject &rootObj)
+bool AddMessageMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     auto initSuccessful = SimpleMessage::initFromRootObject(rootObj);
     if(!initSuccessful){

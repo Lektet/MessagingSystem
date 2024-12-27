@@ -9,7 +9,7 @@ struct JsonSerializable
 public:
     explicit JsonSerializable();
 
-    virtual QJsonDocument toJson();
+    virtual QJsonDocument toJson();//TODO: Rename to toJsonDocument
     virtual bool fromJson(const QJsonDocument &doc);
 
 protected:

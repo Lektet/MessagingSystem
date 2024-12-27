@@ -1,14 +1,14 @@
-#ifndef SENDMESSAGEMESSAGE_H
-#define SENDMESSAGEMESSAGE_H
+#ifndef ADDMESSAGEMESSAGE_H
+#define ADDMESSAGEMESSAGE_H
 
 #include "SimpleMessage.h"
 
 #include "NewChatMessageData.h"
 
-class SendMessageMessage : public SimpleMessage
+class AddMessageMessage : public SimpleMessage
 {
 public:
-    SendMessageMessage(const NewChatMessageData& chatMessageData = NewChatMessageData());
+    AddMessageMessage(const NewChatMessageData& chatMessageData = NewChatMessageData());
 
     QString getMessageUsername() const;
     QString getMessageText() const;    
@@ -22,4 +22,4 @@ private:
     NewChatMessageData messageData;
 };
 
-#endif // SENDMESSAGEMESSAGE_H
+#endif // ADDMESSAGEMESSAGE_H

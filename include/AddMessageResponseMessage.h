@@ -1,15 +1,15 @@
-#ifndef SENDMESSAGERESPONSEMESSAGE_H
-#define SENDMESSAGERESPONSEMESSAGE_H
+#ifndef ADDMESSAGERESPONSEMESSAGE_H
+#define ADDMESSAGERESPONSEMESSAGE_H
 
 #include "SimpleResponseMessage.h"
 
 enum class Result;
 
-class SendMessageResponseMessage : public SimpleMessage
+class AddMessageResponseMessage : public SimpleMessage
 {
 public:
-    SendMessageResponseMessage();
-    SendMessageResponseMessage(Result result);
+    AddMessageResponseMessage();
+    AddMessageResponseMessage(Result result);
 
     Result getResult() const;
     void setResult(Result result);
@@ -19,7 +19,7 @@ protected:
     virtual bool initFromRootObject(const QJsonObject &rootObj) override;
 
 private:
-    Result sendMessageResult;
+    Result addMessageResult;
 };
 
-#endif // SENDMESSAGERESPONSEMESSAGE_H
+#endif // ADDMESSAGERESPONSEMESSAGE_H

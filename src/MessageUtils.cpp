@@ -2,9 +2,9 @@
 
 #include "GetHistoryMessage.h"
 #include "GetHistoryResponseMessage.h"
-#include "SendMessageMessage.h"
-#include "SendMessageMessage.h"
-#include "SendMessageResponseMessage.h"
+#include "AddMessageMessage.h"
+#include "AddMessageMessage.h"
+#include "AddMessageResponseMessage.h"
 #include "NotificationMessage.h"
 
 #include "MessageType.h"
@@ -50,12 +50,12 @@ std::shared_ptr<SimpleMessage> MessageUtils::createMessageFromJson(const QJsonDo
             auto message = std::make_shared<GetHistoryResponseMessage>();
             return messageFromJson(message, document);
         }
-        case MessageType::SendMessage:{
-            auto message = std::make_shared<SendMessageMessage>();
+        case MessageType::AddMessage:{
+            auto message = std::make_shared<AddMessageMessage>();
             return messageFromJson(message, document);
         }
-        case MessageType::SendMessageResponse:{
-            auto message = std::make_shared<SendMessageResponseMessage>();
+        case MessageType::AddMessageResponse:{
+            auto message = std::make_shared<AddMessageResponseMessage>();
             return messageFromJson(message, document);
         }
         case MessageType::Notification:{
