@@ -5,14 +5,9 @@
 
 const QString REQUEST_RESULT = "RequestResult";
 
-AddMessageResponseMessage::AddMessageResponseMessage() :
-    SimpleMessage(MessageType::AddMessageResponse)
-{
-
-}
-
-AddMessageResponseMessage::AddMessageResponseMessage(Result result) :
+AddMessageResponseMessage::AddMessageResponseMessage(const QUuid &sessionId, Result result) :
     SimpleMessage(MessageType::AddMessageResponse),
+    SessionMessage(sessionId),
     addMessageResult(result)
 {
 
@@ -31,13 +26,14 @@ void AddMessageResponseMessage::setResult(Result result)
 void AddMessageResponseMessage::initRootObject(QJsonObject &rootObj)
 {
     SimpleMessage::initRootObject(rootObj);
+    SessionMessage::initRootObject(rootObj);
     rootObj.insert(REQUEST_RESULT, resultToString(addMessageResult));
 }
 
 bool AddMessageResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    auto initSuccessful = SimpleMessage::initFromRootObject(rootObj);
-    if(!initSuccessful){
+    if(!(SimpleMessage::initFromRootObject(rootObj) &&
+          SessionMessage::initFromRootObject(rootObj))){
         qWarning() << "Parent init failed";
         return false;
     }

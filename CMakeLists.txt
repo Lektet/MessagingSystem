@@ -22,9 +22,15 @@ add_library(MessagingSystem STATIC
     include/MessageType.h
     include/MessageUtils.h
     include/NewChatMessageData.h
+    include/NewSessionConfirmMessage.h
+    include/NewSessionEstablishmentMessage.h
+    include/NewSessionRequestMessage.h
+    include/NewSessionResponseMessage.h
     include/NotificationMessage.h
     include/NotificationType.h
     include/Result.h
+    include/SessionInitiationMessage.h
+    include/SessionMessage.h
     include/SimpleMessage.h
     include/utils.h
     src/AddMessageMessage.cpp
@@ -36,8 +42,14 @@ add_library(MessagingSystem STATIC
     src/MessageType.cpp
     src/MessageUtils.cpp
     src/NewChatMessageData.cpp
+    src/NewSessionConfirmMessage.cpp
+    src/NewSessionEstablishmentMessage.cpp
+    src/NewSessionRequestMessage.cpp
+    src/NewSessionResponseMessage.cpp
     src/NotificationMessage.cpp
     src/NotificationType.cpp
+    src/SessionInitiationMessage.cpp
+    src/SessionMessage.cpp
     src/SimpleMessage.cpp
     src/Result.cpp
 )

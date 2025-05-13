@@ -2,8 +2,9 @@
 
 #include "MessageType.h"
 
-GetHistoryMessage::GetHistoryMessage() :
-    SimpleMessage(MessageType::GetHistory)
+GetHistoryMessage::GetHistoryMessage(const QUuid &sessionId) :
+    SimpleMessage(MessageType::GetHistory),
+    SessionMessage(sessionId)
 {
 
 }
@@ -11,9 +12,16 @@ GetHistoryMessage::GetHistoryMessage() :
 void GetHistoryMessage::initRootObject(QJsonObject &rootObj)
 {
     SimpleMessage::initRootObject(rootObj);
+    SessionMessage::initRootObject(rootObj);
 }
 
 bool GetHistoryMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    return SimpleMessage::initFromRootObject(rootObj);
+    if(!(SimpleMessage::initFromRootObject(rootObj) &&
+          SessionMessage::initFromRootObject(rootObj))){
+        qWarning() << "Parent init failed";
+        return false;
+    }
+
+    return true;
 }

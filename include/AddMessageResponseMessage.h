@@ -1,15 +1,14 @@
 #ifndef ADDMESSAGERESPONSEMESSAGE_H
 #define ADDMESSAGERESPONSEMESSAGE_H
 
-#include "SimpleResponseMessage.h"
+#include "SessionMessage.h"
 
-enum class Result;
+#include "Result.h"
 
-class AddMessageResponseMessage : public SimpleMessage
+class AddMessageResponseMessage : public SessionMessage
 {
 public:
-    AddMessageResponseMessage();
-    AddMessageResponseMessage(Result result);
+    AddMessageResponseMessage(const QUuid& sessionId = QUuid(), Result result = Result::Invalid);
 
     Result getResult() const;
     void setResult(Result result);

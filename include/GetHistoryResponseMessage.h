@@ -1,17 +1,17 @@
 #ifndef GETHISTORYRESPONSEMESSAGE_H
 #define GETHISTORYRESPONSEMESSAGE_H
 
-#include "SimpleMessage.h"
+#include "SessionMessage.h"
 
 #include <vector>
 
 #include "ChatMessageData.h"
 
-class GetHistoryResponseMessage : public SimpleMessage
+class GetHistoryResponseMessage : public SessionMessage
 {
 public:
-    GetHistoryResponseMessage();
-    GetHistoryResponseMessage(std::vector<ChatMessageData> messagesHistory);
+    GetHistoryResponseMessage(const QUuid& sessionId = QUuid(),
+                              std::vector<ChatMessageData> messagesHistory = std::vector<ChatMessageData>());
 
     std::vector<ChatMessageData> getMessagesHistory() const;
 

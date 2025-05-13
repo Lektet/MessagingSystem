@@ -6,6 +6,9 @@
 #include "AddMessageMessage.h"
 #include "AddMessageResponseMessage.h"
 #include "NotificationMessage.h"
+#include "NewSessionRequestMessage.h"
+#include "NewSessionResponseMessage.h"
+#include "NewSessionConfirmMessage.h"
 
 #include "MessageType.h"
 
@@ -60,6 +63,18 @@ std::shared_ptr<SimpleMessage> MessageUtils::createMessageFromJson(const QJsonDo
         }
         case MessageType::Notification:{
             auto message = std::make_shared<NotificationMessage>();
+            return messageFromJson(message, document);
+        }
+        case MessageType::NewSessionRequest:{
+            auto message = std::make_shared<NewSessionRequestMessage>();
+            return messageFromJson(message, document);
+        }
+        case MessageType::NewSessionResponse:{
+            auto message = std::make_shared<NewSessionResponseMessage>();
+            return messageFromJson(message, document);
+        }
+        case MessageType::NewSessionConfirm:{
+            auto message = std::make_shared<NewSessionConfirmMessage>();
             return messageFromJson(message, document);
         }
         default:

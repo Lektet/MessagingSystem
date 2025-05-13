@@ -1,14 +1,15 @@
 #ifndef ADDMESSAGEMESSAGE_H
 #define ADDMESSAGEMESSAGE_H
 
-#include "SimpleMessage.h"
+#include "SessionMessage.h"
 
 #include "NewChatMessageData.h"
 
-class AddMessageMessage : public SimpleMessage
+class AddMessageMessage : public SessionMessage
 {
 public:
-    AddMessageMessage(const NewChatMessageData& chatMessageData = NewChatMessageData());
+    AddMessageMessage(const QUuid& sessionId = QUuid(),
+                      const NewChatMessageData& chatMessageData = NewChatMessageData());
 
     QString getMessageUsername() const;
     QString getMessageText() const;    

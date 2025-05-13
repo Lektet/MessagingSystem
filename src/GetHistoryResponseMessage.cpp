@@ -11,15 +11,17 @@ const QString MESSAGE_USERNAME_KEY = "Username";
 const QString MESSAGE_TEXT_KEY = "Text";
 const QString MESSAGE_POST_TIME_KEY = "PostTime";
 
-GetHistoryResponseMessage::GetHistoryResponseMessage() :
-    SimpleMessage(MessageType::GetHistoryResponse),
-    messages(std::vector<ChatMessageData>())
-{
+// GetHistoryResponseMessage::GetHistoryResponseMessage() :
+//     SimpleMessage(MessageType::GetHistoryResponse),
+//     SessionMessage(QUuid()),
+//     messages(std::vector<ChatMessageData>())
+// {
 
-}
+// }
 
-GetHistoryResponseMessage::GetHistoryResponseMessage(std::vector<ChatMessageData> messagesHistory) :
+GetHistoryResponseMessage::GetHistoryResponseMessage(const QUuid &sessionId, std::vector<ChatMessageData> messagesHistory) :
     SimpleMessage(MessageType::GetHistoryResponse),
+    SessionMessage(sessionId),
     messages(std::move(messagesHistory))
 {
 
@@ -33,6 +35,7 @@ std::vector<ChatMessageData> GetHistoryResponseMessage::getMessagesHistory() con
 void GetHistoryResponseMessage::initRootObject(QJsonObject &rootObj)
 {
     SimpleMessage::initRootObject(rootObj);
+    SessionMessage::initRootObject(rootObj);
 
     QJsonArray messagesToSend;
     for(auto& messageObject: messages){
@@ -49,8 +52,8 @@ void GetHistoryResponseMessage::initRootObject(QJsonObject &rootObj)
 
 bool GetHistoryResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    auto initSuccessful = SimpleMessage::initFromRootObject(rootObj);
-    if(!initSuccessful){
+    if(!(SimpleMessage::initFromRootObject(rootObj) &&
+          SessionMessage::initFromRootObject(rootObj))){
         qWarning() << "Parent init failed";
         return false;
     }

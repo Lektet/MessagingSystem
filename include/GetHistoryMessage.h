@@ -1,15 +1,15 @@
 #ifndef GETHISTORYMESSAGE_H
 #define GETHISTORYMESSAGE_H
 
-#include "SimpleMessage.h"
+#include "SessionMessage.h"
 
 enum class MessageType;
 
-class GetHistoryMessage : public SimpleMessage
+class GetHistoryMessage : public SessionMessage
 {
 
 public:
-    GetHistoryMessage();
+    GetHistoryMessage(const QUuid& sessionId = QUuid());
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;

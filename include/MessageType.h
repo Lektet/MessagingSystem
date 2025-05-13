@@ -9,7 +9,10 @@ enum class MessageType{
     GetHistoryResponse,
     AddMessage,
     AddMessageResponse,
-    Notification
+    Notification,
+    NewSessionRequest,
+    NewSessionResponse,
+    NewSessionConfirm
 };
 
 QString messageTypeToString(const MessageType val);

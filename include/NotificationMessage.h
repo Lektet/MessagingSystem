@@ -1,15 +1,15 @@
 #ifndef NOTIFICATIONMESSAGE_H
 #define NOTIFICATIONMESSAGE_H
 
-#include "SimpleMessage.h"
+#include "SessionMessage.h"
 
-enum class NotificationType;
+#include "NotificationType.h"
 
-class NotificationMessage : public SimpleMessage
+class NotificationMessage : public SessionMessage
 {    
 public:
-    NotificationMessage();
-    NotificationMessage(NotificationType type);
+    NotificationMessage(const QUuid& sessionId = QUuid(),
+                        NotificationType type = NotificationType::Invalid);
 
     void setNotificationType(NotificationType type);
     NotificationType getNotificationType() const;

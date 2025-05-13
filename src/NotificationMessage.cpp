@@ -5,15 +5,9 @@
 
 const QString NOTIFICATION_TYPE_KEY = "NotificationType";
 
-NotificationMessage::NotificationMessage() :
+NotificationMessage::NotificationMessage(const QUuid &sessionId, NotificationType type) :
     SimpleMessage(MessageType::Notification),
-    notificationType(NotificationType::Invalid)
-{
-
-}
-
-NotificationMessage::NotificationMessage(NotificationType type) :
-    SimpleMessage(MessageType::Notification),
+    SessionMessage(sessionId),
     notificationType(type)
 {
 
@@ -32,13 +26,14 @@ NotificationType NotificationMessage::getNotificationType() const
 void NotificationMessage::initRootObject(QJsonObject &rootObj)
 {
     SimpleMessage::initRootObject(rootObj);
+    SessionMessage::initRootObject(rootObj);
     rootObj.insert(NOTIFICATION_TYPE_KEY, notificationTypeToString(notificationType));
 }
 
 bool NotificationMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    auto initSuccessful = SimpleMessage::initFromRootObject(rootObj);
-    if(!initSuccessful){
+    if(!(SimpleMessage::initFromRootObject(rootObj) &&
+          SessionMessage::initFromRootObject(rootObj))){
         qWarning() << "Parent init failed";
         return false;
     }
