@@ -1,6 +1,8 @@
 #include "SessionMessage.h"
 
+#include "MessageUtils.h"
 #include "MessageType.h"
+
 
 const QString SESSION_ID_KEY = "SessionId";
 
@@ -18,17 +20,22 @@ QUuid SessionMessage::getSessionId() const
 
 void SessionMessage::initRootObject(QJsonObject &rootObj)
 {
+    SimpleMessage::initRootObject(rootObj);
     rootObj.insert(SESSION_ID_KEY, sessionId.toString());
-
 }
 
 bool SessionMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    if(!rootObj.contains(SESSION_ID_KEY)){
-        qWarning() << "JSON root object contains no session id";
+    if(!SimpleMessage::initFromRootObject(rootObj)){
+        qWarning() << "Parent init failed";
         return false;
     }
 
-    sessionId = QUuid(rootObj.value(SESSION_ID_KEY).toString());
+    auto sessionIdString = MessageUtils::getStringFromJsonObject(rootObj, SESSION_ID_KEY);
+    if(sessionIdString.isNull()){
+        return false;
+    }
+
+    sessionId = QUuid(sessionIdString);
     return true;
 }

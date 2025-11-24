@@ -12,7 +12,8 @@ enum class MessageType{
     Notification,
     NewSessionRequest,
     NewSessionResponse,
-    NewSessionConfirm
+    NewSessionConfirm,
+    Response
 };
 
 QString messageTypeToString(const MessageType val);

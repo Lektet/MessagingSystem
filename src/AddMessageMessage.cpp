@@ -1,6 +1,7 @@
 #include "AddMessageMessage.h"
 
 #include "MessageType.h"
+#include "MessageUtils.h"
 
 const QString MESSAGE_OBJECT_KEY = "MessageObject";
 const QString MESSAGE_USERNAME_KEY = "Username";
@@ -55,17 +56,17 @@ bool AddMessageMessage::initFromRootObject(const QJsonObject &rootObj)
     }
     auto messageObject = rootObj.value(MESSAGE_OBJECT_KEY).toObject();
 
-    if(!messageObject.contains(MESSAGE_USERNAME_KEY)){
-        qWarning() << "JSON root object contains no username";
+    auto username  = MessageUtils::getStringFromJsonObject(messageObject, MESSAGE_USERNAME_KEY);
+    if(username.isNull()){
         return false;
     }
-    messageData.username = messageObject.value(MESSAGE_USERNAME_KEY).toString();
+    messageData.username = std::move(username);
 
-    if(!messageObject.contains(MESSAGE_TEXT_KEY)){
-        qWarning() << "JSON root object contains no message text";
+    auto text  = MessageUtils::getStringFromJsonObject(messageObject, MESSAGE_TEXT_KEY);
+    if(text.isNull()){
         return false;
     }
-    messageData.text = messageObject.value(MESSAGE_TEXT_KEY).toString();
+    messageData.text = std::move(text);
 
     return true;
 }

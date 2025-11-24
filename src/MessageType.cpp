@@ -13,7 +13,8 @@ std::map<MessageType, QString> requestTypeStrings = {
     {MessageType::Notification, "Notification"},
     {MessageType::NewSessionRequest, "NewSessionRequest"},
     {MessageType::NewSessionResponse, "NewSessionResponse"},
-    {MessageType::NewSessionConfirm, "NewSessionConfirm"}
+    {MessageType::NewSessionConfirm, "NewSessionConfirm"},
+    {MessageType::Response, "Response"}
 };
 
 QString messageTypeToString(const MessageType val)

@@ -1,15 +1,38 @@
 #ifndef MESSAGESCREATION_H
 #define MESSAGESCREATION_H
 
-#include "SimpleMessage.h"
+#include <QString>
 
-#include <memory>
+#include <QJsonObject>
+#include <QJsonDocument>
+
+#include "MessageType.h"
+
+#include <QDebug>
 
 namespace MessageUtils
 {
-    std::shared_ptr<SimpleMessage> createMessageFromJson(const QJsonDocument& document);
+    template<typename T>
+    T createMessageFromJson(const QJsonDocument &document)
+    {
+        T message;
+        if(!document.isObject()){
+            qWarning() << "Json document is invalid";
+            return message;
+        }
+
+        if(document.object().isEmpty()){
+            qWarning() << "Json object is empty";
+            return message;
+        }
+
+        message.fromJson(document);
+        return message;
+    }
 
     MessageType getMessageType(const QJsonDocument& document);
+
+    QString getStringFromJsonObject(const QJsonObject& obj, const QString& key);
 }
 
 #endif // MESSAGESCREATION_H

@@ -16,6 +16,8 @@ add_library(MessagingSystem STATIC
     include/AddMessageMessage.h
     include/AddMessageResponseMessage.h
     include/ChatMessageData.h
+    include/ErrorCode.h
+    include/ErrorData.h
     include/GetHistoryMessage.h
     include/GetHistoryResponseMessage.h
     include/JsonSerializable.h
@@ -28,6 +30,7 @@ add_library(MessagingSystem STATIC
     include/NewSessionResponseMessage.h
     include/NotificationMessage.h
     include/NotificationType.h
+    include/ResponseMessage.h
     include/Result.h
     include/SessionInitiationMessage.h
     include/SessionMessage.h
@@ -35,6 +38,8 @@ add_library(MessagingSystem STATIC
     include/utils.h
     src/AddMessageMessage.cpp
     src/AddMessageResponseMessage.cpp
+    src/ErrorCode.cpp
+    src/ErrorData.cpp
     src/ChatMessageData.cpp
     src/GetHistoryMessage.cpp
     src/GetHistoryResponseMessage.cpp
@@ -51,6 +56,7 @@ add_library(MessagingSystem STATIC
     src/SessionInitiationMessage.cpp
     src/SessionMessage.cpp
     src/SimpleMessage.cpp
+    src/ResponseMessage.cpp
     src/Result.cpp
 )
 

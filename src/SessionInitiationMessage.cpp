@@ -1,6 +1,7 @@
 #include "SessionInitiationMessage.h"
 
 #include "MessageType.h"
+#include "MessageUtils.h"
 
 const QString USER_ID_KEY = "UserId";
 
@@ -23,11 +24,11 @@ void SessionInitiationMessage::initRootObject(QJsonObject &rootObj)
 
 bool SessionInitiationMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    if(!rootObj.contains(USER_ID_KEY)){
-        qWarning() << "JSON root object contains no type";
+    auto userIdString = MessageUtils::getStringFromJsonObject(rootObj, USER_ID_KEY);
+    if(userIdString.isNull()){
         return false;
     }
 
-    userId = QUuid(rootObj.value(USER_ID_KEY).toString());
+    userId = QUuid(userIdString);
     return true;
 }

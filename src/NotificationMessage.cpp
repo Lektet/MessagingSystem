@@ -2,6 +2,7 @@
 
 #include "MessageType.h"
 #include "NotificationType.h"
+#include "MessageUtils.h"
 
 const QString NOTIFICATION_TYPE_KEY = "NotificationType";
 
@@ -38,11 +39,11 @@ bool NotificationMessage::initFromRootObject(const QJsonObject &rootObj)
         return false;
     }
 
-    if(!rootObj.contains(NOTIFICATION_TYPE_KEY)){
-        qWarning() << "JSON root object contains no type";
+    auto notificationTypeString = MessageUtils::getStringFromJsonObject(rootObj, NOTIFICATION_TYPE_KEY);
+    if(notificationTypeString.isNull()){
         return false;
     }
 
-    notificationType = notificationTypeFromString(rootObj.value(NOTIFICATION_TYPE_KEY).toString());
+    notificationType = notificationTypeFromString(notificationTypeString);
     return true;
 }

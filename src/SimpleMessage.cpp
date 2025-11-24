@@ -1,6 +1,7 @@
 #include "SimpleMessage.h"
 
 #include "MessageType.h"
+#include "MessageUtils.h"
 
 const QString TYPE_KEY = "Type";
 
@@ -23,11 +24,11 @@ void SimpleMessage::initRootObject(QJsonObject &rootObj)
 
 bool SimpleMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    if(!rootObj.contains(TYPE_KEY)){
-        qWarning() << "JSON root object contains no type";
+    auto messageTypeString = MessageUtils::getStringFromJsonObject(rootObj, TYPE_KEY);
+    if(messageTypeString.isNull()){
         return false;
     }
 
-    messageType = messageTypeFromString(rootObj.value(TYPE_KEY).toString());
+    messageType = messageTypeFromString(messageTypeString);
     return true;
 }

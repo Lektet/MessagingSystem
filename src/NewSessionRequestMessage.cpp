@@ -1,6 +1,7 @@
 #include "NewSessionRequestMessage.h"
 
 #include "MessageType.h"
+#include "MessageUtils.h"
 
 const QString USERNAME_KEY = "Username";
 
@@ -33,6 +34,9 @@ bool NewSessionRequestMessage::initFromRootObject(const QJsonObject &rootObj)
         return false;
     }
 
-    username = rootObj.value(USERNAME_KEY).toString();
+    username = MessageUtils::getStringFromJsonObject(rootObj, USERNAME_KEY);
+    if(username.isNull()){
+        return false;
+    }
     return true;
 }

@@ -5,7 +5,7 @@
 
 class NewSessionResponseMessage: public NewSessionEstablishmentMessage{
 public:
-    NewSessionResponseMessage(bool usernameIsValid = false,
+    NewSessionResponseMessage(bool loginUsernameIsValid = false,
                               const QUuid& initialUserId = QUuid(),
                               const QUuid& sessionId = QUuid());
 
@@ -17,7 +17,7 @@ protected:
     virtual bool initFromRootObject(const QJsonObject &rootObj) override;
 
 private:
-    bool isValid;
+    bool usernameIsValid;
 };
 
 #endif // NEWSESSIONRESPONSEMESSAGE_H

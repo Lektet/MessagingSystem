@@ -4,6 +4,7 @@
 
 #include "MessageType.h"
 #include "ChatMessageData.h"
+#include "MessageUtils.h"
 
 const QString MESSAGES_KEY = "Messages";
 const QString MESSAGE_ID_KEY = "Id";
@@ -82,25 +83,29 @@ bool GetHistoryResponseMessage::initFromRootObject(const QJsonObject &rootObj)
             qWarning() << "Message contains no id";
             return false;
         }
-        messageData.id = messageJsonObject.value(MESSAGE_ID_KEY).toString();
-
-        if(!messageJsonObject.contains(MESSAGE_USERNAME_KEY)){
-            qWarning() << "Message contains no username";
+        auto id = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_ID_KEY);
+        if(id.isNull()){
             return false;
         }
-        messageData.username = messageJsonObject.value(MESSAGE_USERNAME_KEY).toString();
+        messageData.id = std::move(id);
 
-        if(!messageJsonObject.contains(MESSAGE_TEXT_KEY)){
-            qWarning() << "Message contains no text";
+        auto username = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_USERNAME_KEY);
+        if(username.isNull()){
             return false;
         }
-        messageData.text = messageJsonObject.value(MESSAGE_TEXT_KEY).toString();
+        messageData.username = std::move(username);
 
-        if(!messageJsonObject.contains(MESSAGE_POST_TIME_KEY)){
-            qWarning() << "Message contains no post time";
+        auto text = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_TEXT_KEY);
+        if(text.isNull()){
             return false;
         }
-        messageData.postTime = messageJsonObject.value(MESSAGE_POST_TIME_KEY).toString();
+        messageData.text = std::move(text);
+
+        auto postTime = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_POST_TIME_KEY);
+        if(postTime.isNull()){
+            return false;
+        }
+        messageData.postTime = std::move(postTime);
 
         messages.push_back(std::move(messageData));
     }
