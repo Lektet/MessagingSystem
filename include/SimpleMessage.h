@@ -5,7 +5,7 @@
 
 enum class MessageType;
 
-class SimpleMessage : public JsonSerializable
+class SimpleMessage : virtual public JsonSerializable
 {
 public:
     SimpleMessage(MessageType type);

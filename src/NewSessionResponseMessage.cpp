@@ -7,8 +7,9 @@ const QString IS_VALID_KEY = "IsValid";
 NewSessionResponseMessage::NewSessionResponseMessage(bool loginUsernameIsValid,
                                                      const QUuid &initialUserId,
                                                      const QUuid &sessionId) :
-    SimpleMessage(MessageType::NewSessionResponse),
-    NewSessionEstablishmentMessage(initialUserId, sessionId),
+    NewSessionEstablishmentMessage(initialUserId,
+                                     sessionId,
+                                     MessageType::NewSessionResponse),
     usernameIsValid(loginUsernameIsValid)
 {
 
@@ -21,7 +22,6 @@ bool NewSessionResponseMessage::getUsernameIsValid()
 
 void NewSessionResponseMessage::initRootObject(QJsonObject &rootObj)
 {
-    SimpleMessage::initRootObject(rootObj);
     NewSessionEstablishmentMessage::initRootObject(rootObj);
 
     rootObj.insert(IS_VALID_KEY, usernameIsValid);
@@ -29,8 +29,7 @@ void NewSessionResponseMessage::initRootObject(QJsonObject &rootObj)
 
 bool NewSessionResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    if(!(SimpleMessage::initFromRootObject(rootObj) &&
-          NewSessionEstablishmentMessage::initFromRootObject(rootObj))){
+    if(!NewSessionEstablishmentMessage::initFromRootObject(rootObj)){
         qWarning() << "Parent init failed";
         return false;
     }

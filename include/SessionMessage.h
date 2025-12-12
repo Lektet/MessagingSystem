@@ -5,12 +5,14 @@
 
 #include <QUuid>
 
-enum class MessageType;
+// enum class MessageType;
+#include "MessageType.h"
 
-class SessionMessage : virtual public SimpleMessage
+class SessionMessage : public SimpleMessage
 {
 public:
-    SessionMessage(const QUuid& messageSessionId);
+    SessionMessage(const QUuid& messageSessionId = QUuid(),
+                   MessageType messageType = MessageType::Invalid);
 
     QUuid getSessionId() const;
 

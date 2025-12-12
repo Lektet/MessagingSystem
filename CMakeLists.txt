@@ -15,9 +15,10 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network REQUIRED)
 add_library(MessagingSystem STATIC
     include/AddMessageMessage.h
     include/AddMessageResponseMessage.h
+    include/BadRequestResponseMessage.h
     include/ChatMessageData.h
     include/ErrorCode.h
-    include/ErrorData.h
+    include/ErrorInfo.h
     include/GetHistoryMessage.h
     include/GetHistoryResponseMessage.h
     include/JsonSerializable.h
@@ -38,8 +39,9 @@ add_library(MessagingSystem STATIC
     include/utils.h
     src/AddMessageMessage.cpp
     src/AddMessageResponseMessage.cpp
+    src/BadRequestResponseMessage.cpp
     src/ErrorCode.cpp
-    src/ErrorData.cpp
+    src/ErrorInfo.cpp
     src/ChatMessageData.cpp
     src/GetHistoryMessage.cpp
     src/GetHistoryResponseMessage.cpp

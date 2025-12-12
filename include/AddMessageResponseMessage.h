@@ -1,20 +1,21 @@
 #ifndef ADDMESSAGERESPONSEMESSAGE_H
 #define ADDMESSAGERESPONSEMESSAGE_H
 
-#include "ResponseMessage.h"
+#include "SessionMessage.h"
 
-#include "ErrorData.h"
-#include "ErrorCode.h"
-
-class AddMessageResponseMessage : public ResponseMessage
+class AddMessageResponseMessage : public SessionMessage
 {
 public:
     AddMessageResponseMessage(const QUuid& sessionId = QUuid(),
-                              ResultInfo result = {ResultCode::Undefined, ""});
+                              bool addMessageResult = false);
+
+    bool getResult() const;
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;
     virtual bool initFromRootObject(const QJsonObject &rootObj) override;
+
+    bool result;
 };
 
 #endif // ADDMESSAGERESPONSEMESSAGE_H

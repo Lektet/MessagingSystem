@@ -2,6 +2,7 @@
 #define GETHISTORYRESPONSEMESSAGE_H
 
 #include "SessionMessage.h"
+#include "ResponseMessage.h"
 
 #include <vector>
 

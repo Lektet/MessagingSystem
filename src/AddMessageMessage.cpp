@@ -8,8 +8,7 @@ const QString MESSAGE_USERNAME_KEY = "Username";
 const QString MESSAGE_TEXT_KEY = "Text";
 
 AddMessageMessage::AddMessageMessage(const QUuid &sessionId, const NewChatMessageData& chatMessageData) :
-    SimpleMessage(MessageType::AddMessage),
-    SessionMessage(sessionId),
+    SessionMessage(sessionId, MessageType::AddMessage),
     messageData(chatMessageData)
 {
 
@@ -32,7 +31,6 @@ NewChatMessageData AddMessageMessage::getChatMessageData() const
 
 void AddMessageMessage::initRootObject(QJsonObject &rootObj)
 {
-    SimpleMessage::initRootObject(rootObj);
     SessionMessage::initRootObject(rootObj);
 
     QJsonObject messageObject;
@@ -44,8 +42,7 @@ void AddMessageMessage::initRootObject(QJsonObject &rootObj)
 
 bool AddMessageMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    if(!(SimpleMessage::initFromRootObject(rootObj) &&
-          SessionMessage::initFromRootObject(rootObj))){
+    if(!SessionMessage::initFromRootObject(rootObj)){
         qWarning() << "Parent init failed";
         return false;
     }

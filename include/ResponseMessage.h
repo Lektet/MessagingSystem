@@ -5,22 +5,23 @@
 
 #include <QUuid>
 
-#include "ErrorData.h"
+#include "ErrorInfo.h"
 #include "MessageType.h"
 
-class ResponseMessage: public SessionMessage{
+class ResponseMessage: virtual public SessionMessage{
 public:
-    explicit ResponseMessage(const QUuid sessionId = QUuid(),
-                             ResultInfo messageResultInfo = {ResultCode::Undefined, ""});
+    explicit ResponseMessage(const QUuid& messageSessionId = QUuid(),
+                             const MessageType messageType = MessageType::Invalid,
+                             const ErrorInfo messageErrorInfo = {ErrorCode::Undefined, ""});
 
-    ResultInfo getResultInfo() const;
+    ErrorInfo getErrorInfo() const;
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj);
     virtual bool initFromRootObject(const QJsonObject &rootObj);
 
 private:
-    ResultInfo resultInfo;
+    ErrorInfo errorInfo;
 };
 
 #endif // RESPONSEMESSAGE_H

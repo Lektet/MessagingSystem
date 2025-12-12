@@ -2,23 +2,28 @@
 
 #include "MessageType.h"
 
-AddMessageResponseMessage::AddMessageResponseMessage(const QUuid &sessionId, ResultInfo result) :
-    SimpleMessage(MessageType::AddMessageResponse),
-    ResponseMessage(sessionId, result)
+const QString RESULT = "RequestResult";
+
+AddMessageResponseMessage::AddMessageResponseMessage(const QUuid &sessionId, bool addMessageResult):
+    SessionMessage(sessionId, MessageType::AddMessageResponse),
+    result(addMessageResult)
 {
 
+}
+
+bool AddMessageResponseMessage::getResult() const
+{
+    return result;
 }
 
 void AddMessageResponseMessage::initRootObject(QJsonObject &rootObj)
 {
-    SimpleMessage::initRootObject(rootObj);
-    ResponseMessage::initRootObject(rootObj);
+    SessionMessage::initRootObject(rootObj);
 }
 
 bool AddMessageResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    if(!(SimpleMessage::initFromRootObject(rootObj) &&
-          ResponseMessage::initFromRootObject(rootObj))){
+    if(!SessionMessage::initFromRootObject(rootObj)){
         qWarning() << "Parent init failed";
         return false;
     }

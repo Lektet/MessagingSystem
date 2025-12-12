@@ -1,9 +1,10 @@
 #ifndef NEWSESSIONREQUESTMESSAGE_H
 #define NEWSESSIONREQUESTMESSAGE_H
 
+#include "SimpleMessage.h"
 #include "SessionInitiationMessage.h"
 
-class NewSessionRequestMessage: public SessionInitiationMessage{
+class NewSessionRequestMessage: public SimpleMessage, public SessionInitiationMessage{
 public:
     NewSessionRequestMessage(const QUuid& initialUserId = QUuid(),
                              const QString& authUsername = QString());

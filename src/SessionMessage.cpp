@@ -6,8 +6,9 @@
 
 const QString SESSION_ID_KEY = "SessionId";
 
-SessionMessage::SessionMessage(const QUuid &messageSessionId) :
-    SimpleMessage(MessageType::Invalid),
+SessionMessage::SessionMessage(const QUuid &messageSessionId,
+                               MessageType messageType) :
+    SimpleMessage(messageType),
     sessionId(messageSessionId)
 {
 
@@ -33,6 +34,7 @@ bool SessionMessage::initFromRootObject(const QJsonObject &rootObj)
 
     auto sessionIdString = MessageUtils::getStringFromJsonObject(rootObj, SESSION_ID_KEY);
     if(sessionIdString.isNull()){
+        qWarning() << "No session id";
         return false;
     }
 

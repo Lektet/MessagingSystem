@@ -20,9 +20,9 @@ const QString MESSAGE_POST_TIME_KEY = "PostTime";
 
 // }
 
-GetHistoryResponseMessage::GetHistoryResponseMessage(const QUuid &sessionId, std::vector<ChatMessageData> messagesHistory) :
-    SimpleMessage(MessageType::GetHistoryResponse),
-    SessionMessage(sessionId),
+GetHistoryResponseMessage::GetHistoryResponseMessage(const QUuid &sessionId,
+                                                     std::vector<ChatMessageData> messagesHistory) :
+    SessionMessage(sessionId, MessageType::GetHistoryResponse),
     messages(std::move(messagesHistory))
 {
 
@@ -35,9 +35,7 @@ std::vector<ChatMessageData> GetHistoryResponseMessage::getMessagesHistory() con
 
 void GetHistoryResponseMessage::initRootObject(QJsonObject &rootObj)
 {
-    SimpleMessage::initRootObject(rootObj);
     SessionMessage::initRootObject(rootObj);
-
     QJsonArray messagesToSend;
     for(auto& messageObject: messages){
         QJsonObject messageJsonObject;
@@ -53,8 +51,7 @@ void GetHistoryResponseMessage::initRootObject(QJsonObject &rootObj)
 
 bool GetHistoryResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    if(!(SimpleMessage::initFromRootObject(rootObj) &&
-          SessionMessage::initFromRootObject(rootObj))){
+    if(!SessionMessage::initFromRootObject(rootObj)){
         qWarning() << "Parent init failed";
         return false;
     }

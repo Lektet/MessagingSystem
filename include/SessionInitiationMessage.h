@@ -7,7 +7,7 @@
 
 enum class MessageType;
 
-class SessionInitiationMessage: virtual public SimpleMessage{
+class SessionInitiationMessage: virtual public JsonSerializable{
 public:
     SessionInitiationMessage(const QUuid& initialUserId);
 

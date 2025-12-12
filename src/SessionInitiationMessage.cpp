@@ -6,7 +6,6 @@
 const QString USER_ID_KEY = "UserId";
 
 SessionInitiationMessage::SessionInitiationMessage(const QUuid& initialUserId) :
-    SimpleMessage(MessageType::Invalid),
     userId(initialUserId)
 {
 

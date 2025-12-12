@@ -1,12 +1,9 @@
 #include "NewSessionEstablishmentMessage.h"
 
-#include "MessageType.h"
-
 NewSessionEstablishmentMessage::NewSessionEstablishmentMessage
-    (const QUuid &initialUserId, const QUuid &sessionId):
-    SimpleMessage(MessageType::Invalid),
+    (const QUuid &initialUserId, const QUuid &sessionId, const MessageType messageType):
     SessionInitiationMessage(initialUserId),
-    SessionMessage(sessionId)
+    SessionMessage(sessionId, messageType)
 
 {
 

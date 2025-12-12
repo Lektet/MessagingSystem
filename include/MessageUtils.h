@@ -13,7 +13,7 @@
 namespace MessageUtils
 {
     template<typename T>
-    T createMessageFromJson(const QJsonDocument &document)
+    T createMessageFromJson(const QJsonDocument &document, bool* parseSuccess)
     {
         T message;
         if(!document.isObject()){
@@ -26,7 +26,7 @@ namespace MessageUtils
             return message;
         }
 
-        message.fromJson(document);
+        *parseSuccess = message.fromJson(document);
         return message;
     }
 

@@ -7,8 +7,7 @@
 const QString NOTIFICATION_TYPE_KEY = "NotificationType";
 
 NotificationMessage::NotificationMessage(const QUuid &sessionId, NotificationType type) :
-    SimpleMessage(MessageType::Notification),
-    SessionMessage(sessionId),
+    SessionMessage(sessionId, MessageType::Notification),
     notificationType(type)
 {
 

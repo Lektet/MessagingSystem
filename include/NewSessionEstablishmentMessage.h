@@ -3,13 +3,13 @@
 
 #include "SessionInitiationMessage.h"
 #include "SessionMessage.h"
-
-enum class MessageType;
+#include "MessageType.h"
 
 class NewSessionEstablishmentMessage: public SessionInitiationMessage, public SessionMessage{
 public:
     NewSessionEstablishmentMessage(const QUuid& initialUserId,
-        const QUuid& sessionId);
+                                   const QUuid& sessionId,
+                                   const MessageType messageType = MessageType::Invalid);
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;

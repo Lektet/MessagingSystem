@@ -2,35 +2,35 @@
 
 #include "MessageType.h"
 
-ResponseMessage::ResponseMessage(const QUuid sessionId, ResultInfo messageResultInfo):
-    SimpleMessage(),
-    SessionMessage(sessionId),
-    resultInfo(std::move(messageResultInfo))
+ResponseMessage::ResponseMessage(const QUuid& messageSessionId,
+                                 const MessageType messageType,
+                                 const ErrorInfo messageErrorInfo):
+    SessionMessage(messageSessionId, messageType),
+    errorInfo(std::move(messageErrorInfo))
 {
 
 }
 
-ResultInfo ResponseMessage::getResultInfo() const
+ErrorInfo ResponseMessage::getErrorInfo() const
 {
-    return resultInfo;
+    return errorInfo;
 }
 
 void ResponseMessage::initRootObject(QJsonObject &rootObj)
 {
     SessionMessage::initRootObject(rootObj);
-    saveResultInfoToJson(rootObj, resultInfo);
+    saveErrorInfoToJson(rootObj, errorInfo);
 }
 
 bool ResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    if(!SimpleMessage::initFromRootObject(rootObj) ||
-        !SessionMessage::initFromRootObject(rootObj)){
+    if(!SessionMessage::initFromRootObject(rootObj)){
         qWarning() << "Parent init failed";
         return false;
     }
 
-    if(!loadResultInfoFromJson(resultInfo, rootObj)){
-        qWarning() << "Error data loading from Json failed";
+    if(!loadErrorInfoFromJson(errorInfo, rootObj)){
+        qWarning() << "Error info loading from Json failed";
         return false;
     }
 
