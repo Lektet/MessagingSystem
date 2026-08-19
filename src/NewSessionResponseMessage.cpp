@@ -2,50 +2,42 @@
 
 #include "MessageType.h"
 
-const QString IS_VALID_KEY = "IsValid";
+#include "MessageUtils.h"
 
-NewSessionResponseMessage::NewSessionResponseMessage(bool loginUsernameIsValid,
-                                                     const QUuid &initialUserId,
-                                                     const QUuid &sessionId) :
+const QString USER_ROLE_KEY = "UserRole";
+
+NewSessionSuccessResponseMessage::NewSessionSuccessResponseMessage(
+    const QUuid &initialUserId,
+    const QUuid &sessionId,
+    const UserRole role) :
     NewSessionEstablishmentMessage(initialUserId,
                                      sessionId,
                                      MessageType::NewSessionResponse),
-    usernameIsValid(loginUsernameIsValid)
+    userRole(role)
 {
 
 }
 
-bool NewSessionResponseMessage::getUsernameIsValid()
+UserRole NewSessionSuccessResponseMessage::getUserRole()
 {
-    return usernameIsValid;
+    return userRole;
 }
 
-void NewSessionResponseMessage::initRootObject(QJsonObject &rootObj)
+void NewSessionSuccessResponseMessage::initRootObject(QJsonObject &rootObj)
 {
     NewSessionEstablishmentMessage::initRootObject(rootObj);
 
-    rootObj.insert(IS_VALID_KEY, usernameIsValid);
+    rootObj.insert(USER_ROLE_KEY, (int)userRole);
 }
 
-bool NewSessionResponseMessage::initFromRootObject(const QJsonObject &rootObj)
+bool NewSessionSuccessResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     if(!NewSessionEstablishmentMessage::initFromRootObject(rootObj)){
         qWarning() << "Parent init failed";
         return false;
     }
 
-    if(!rootObj.contains(IS_VALID_KEY)){
-        qWarning() << "Json object contains no log in result";
-        return false;
-    }
-
-    auto isValidVal = rootObj.value(IS_VALID_KEY);
-    if(!isValidVal.isBool()){
-        qWarning() << "Log in result value is of wrong type";
-        return false;
-    }
-
-    usernameIsValid = isValidVal.toBool();
+    userRole = UserRole(MessageUtils::getIntFromJsonObject(rootObj, USER_ROLE_KEY));
 
     return true;
 }

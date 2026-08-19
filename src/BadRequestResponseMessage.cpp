@@ -1,7 +1,7 @@
 #include "BadRequestResponseMessage.h"
 
-BadRequestResponseMessage::BadRequestResponseMessage(const QUuid &messageSessionId):
-    ResponseMessage(messageSessionId,
+BadRequestResponseMessage::BadRequestResponseMessage(const QUuid &sessionId):
+    ResponseMessage(sessionId,
                       MessageType::BadRequestResponse,
                       {ErrorCode::BadRequest, "Message is malformed"})
 {

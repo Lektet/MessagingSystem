@@ -7,9 +7,11 @@
 class NewSessionRequestMessage: public SimpleMessage, public SessionInitiationMessage{
 public:
     NewSessionRequestMessage(const QUuid& initialUserId = QUuid(),
-                             const QString& authUsername = QString());
+                             const QString& authUsername = QString(),
+                             const QString& authPassword = QString());
 
     QString getUsername() const;
+    QString getPassword() const;
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;
@@ -17,6 +19,7 @@ protected:
 
 private:
     QString username;
+    QString password;
 };
 
 #endif // NEWSESSIONREQUESTMESSAGE_H

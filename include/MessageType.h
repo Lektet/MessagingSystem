@@ -9,9 +9,13 @@ enum class MessageType{
     GetHistoryResponse,
     AddMessage,
     AddMessageResponse,
+    AddUser,
+    AddUserResponse,
+    ChangeUserPassword,
     Notification,
     NewSessionRequest,
     NewSessionResponse,
+    NewSessionFailedResponse,
     NewSessionConfirm,
     BadRequestResponse
 };

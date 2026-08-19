@@ -6,7 +6,7 @@
 
 class BadRequestResponseMessage: public ResponseMessage{
 public:
-    explicit BadRequestResponseMessage(const QUuid& messageSessionId = QUuid());
+    explicit BadRequestResponseMessage(const QUuid& sessionId = QUuid());
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;

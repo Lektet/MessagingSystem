@@ -37,3 +37,33 @@ QString MessageUtils::getStringFromJsonObject(const QJsonObject &obj, const QStr
 
     return val.toString();
 }
+
+bool MessageUtils::getBoolFromJsonObject(const QJsonObject &obj, const QString &key)
+{
+    if(!obj.contains(key)){
+        qDebug() << "Json object contains no key: "  << key;
+        return false;
+    }
+
+    auto val = obj.value(key);
+    if(!val.isBool()){
+        qDebug() << "Json value of \"" << key << "\" is not bool";
+    }
+
+    return val.toBool();
+}
+
+int MessageUtils::getIntFromJsonObject(const QJsonObject &obj, const QString &key)
+{
+    if(!obj.contains(key)){
+        qDebug() << "Json object contains no key: "  << key;
+        return false;
+    }
+
+    auto val = obj.value(key);
+    if(!val.isDouble()){
+        qDebug() << "Json value of \"" << key << "\" is not double";
+    }
+
+    return val.toInt();
+}

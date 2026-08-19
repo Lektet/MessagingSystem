@@ -1,23 +1,24 @@
-#ifndef NEWSESSIONRESPONSEMESSAGE_H
-#define NEWSESSIONRESPONSEMESSAGE_H
+#ifndef NEWSESSIONSUCCESSRESPONSEMESSAGE_H
+#define NEWSESSIONSUCCESSRESPONSEMESSAGE_H
 
 #include "NewSessionEstablishmentMessage.h"
 
-class NewSessionResponseMessage: public NewSessionEstablishmentMessage{
+#include "UserRole.h"
+
+class NewSessionSuccessResponseMessage: public NewSessionEstablishmentMessage{
 public:
-    NewSessionResponseMessage(bool loginUsernameIsValid = false,
-                              const QUuid& initialUserId = QUuid(),
-                              const QUuid& sessionId = QUuid());
+    NewSessionSuccessResponseMessage(const QUuid& initialUserId = QUuid(),
+                                     const QUuid& sessionId = QUuid(),
+                                     const UserRole role = UserRole::Undefined);
 
-    bool getUsernameIsValid();
-
+    UserRole getUserRole();
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;
     virtual bool initFromRootObject(const QJsonObject &rootObj) override;
 
 private:
-    bool usernameIsValid;
+    UserRole userRole;
 };
 
-#endif // NEWSESSIONRESPONSEMESSAGE_H
+#endif // NEWSESSIONSUCCESSRESPONSEMESSAGE_H

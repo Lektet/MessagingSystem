@@ -4,11 +4,15 @@
 #include "MessageUtils.h"
 
 const QString USERNAME_KEY = "Username";
+const QString PASSWORD_KEY = "Password";
 
-NewSessionRequestMessage::NewSessionRequestMessage(const QUuid &initialUserId, const QString &authUsername) :
+NewSessionRequestMessage::NewSessionRequestMessage(const QUuid &initialUserId,
+                                                   const QString &authUsername,
+                                                   const QString& authPassword) :
     SimpleMessage(MessageType::NewSessionRequest),
     SessionInitiationMessage(initialUserId),
-    username(authUsername)
+    username(authUsername),
+    password(authPassword)
 {
 
 }
@@ -18,12 +22,18 @@ QString NewSessionRequestMessage::getUsername() const
     return username;
 }
 
+QString NewSessionRequestMessage::getPassword() const
+{
+    return password;
+}
+
 void NewSessionRequestMessage::initRootObject(QJsonObject &rootObj)
 {
     SimpleMessage::initRootObject(rootObj);
     SessionInitiationMessage::initRootObject(rootObj);
 
     rootObj.insert(USERNAME_KEY, username);
+    rootObj.insert(PASSWORD_KEY, password);
 }
 
 bool NewSessionRequestMessage::initFromRootObject(const QJsonObject &rootObj)
@@ -36,6 +46,11 @@ bool NewSessionRequestMessage::initFromRootObject(const QJsonObject &rootObj)
 
     username = MessageUtils::getStringFromJsonObject(rootObj, USERNAME_KEY);
     if(username.isNull()){
+        return false;
+    }
+
+    password = MessageUtils::getStringFromJsonObject(rootObj, PASSWORD_KEY);
+    if(password.isNull()){
         return false;
     }
     return true;

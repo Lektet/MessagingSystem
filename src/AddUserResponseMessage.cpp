@@ -1,4 +1,4 @@
-#include "AddMessageResponseMessage.h"
+#include "AddUserResponseMessage.h"
 
 #include "MessageType.h"
 
@@ -6,26 +6,26 @@
 
 const QString RESULT_KEY = "RequestResult";
 
-AddMessageResponseMessage::AddMessageResponseMessage(const QUuid &sessionId, bool addMessageResult):
-    SessionMessage(sessionId, MessageType::AddMessageResponse),
+AddUserResponseMessage::AddUserResponseMessage(const QUuid &sessionId, bool addMessageResult):
+    SessionMessage(sessionId, MessageType::AddUserResponse),
     result(addMessageResult)
 {
 
 }
 
-bool AddMessageResponseMessage::getResult() const
+bool AddUserResponseMessage::getResult() const
 {
     return result;
 }
 
-void AddMessageResponseMessage::initRootObject(QJsonObject &rootObj)
+void AddUserResponseMessage::initRootObject(QJsonObject &rootObj)
 {
     SessionMessage::initRootObject(rootObj);
 
     rootObj.insert(RESULT_KEY, result);
 }
 
-bool AddMessageResponseMessage::initFromRootObject(const QJsonObject &rootObj)
+bool AddUserResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     if(!SessionMessage::initFromRootObject(rootObj)){
         qWarning() << "Parent init failed";
