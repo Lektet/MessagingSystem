@@ -14,10 +14,7 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network REQUIRED)
 
 add_library(MessagingSystem STATIC
     include/AddMessageMessage.h
-    include/AddMessageResponseMessage.h
     include/AddUserMessage.h
-    include/AddUserResponseMessage.h
-    include/BadRequestResponseMessage.h
     include/ChangeUserPasswordMessage.h
     include/ChatMessageData.h
     include/Constants.h
@@ -31,9 +28,8 @@ add_library(MessagingSystem STATIC
     include/NewChatMessageData.h
     include/NewSessionConfirmMessage.h
     include/NewSessionEstablishmentMessage.h
-    include/NewSessionFailedResponseMessage.h
-    include/NewSessionSuccessResponseMessage.h
     include/NewSessionRequestMessage.h
+    include/NewSessionResponseMessage.h
     include/NotificationMessage.h
     include/NotificationType.h
     include/ResponseMessage.h
@@ -44,10 +40,7 @@ add_library(MessagingSystem STATIC
     include/UserRole.h
     include/utils.h
     src/AddMessageMessage.cpp
-    src/AddMessageResponseMessage.cpp
     src/AddUserMessage.cpp
-    src/AddUserResponseMessage.cpp
-    src/BadRequestResponseMessage.cpp
     src/ErrorCode.cpp
     src/ErrorInfo.cpp
     src/ChangeUserPasswordMessage.cpp
@@ -60,9 +53,8 @@ add_library(MessagingSystem STATIC
     src/NewChatMessageData.cpp
     src/NewSessionConfirmMessage.cpp
     src/NewSessionEstablishmentMessage.cpp
-    src/NewSessionFailedResponseMessage.cpp
-    src/NewSessionSuccessResponseMessage.cpp
     src/NewSessionRequestMessage.cpp
+    src/NewSessionResponseMessage.cpp
     src/NotificationMessage.cpp
     src/NotificationType.cpp
     src/SessionInitiationMessage.cpp

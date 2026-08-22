@@ -5,7 +5,7 @@
 #include "SessionMessage.h"
 #include "MessageType.h"
 
-class NewSessionEstablishmentMessage: public SessionInitiationMessage, public SessionMessage{
+class NewSessionEstablishmentMessage: public SessionInitiationMessage, virtual public SessionMessage{
 public:
     NewSessionEstablishmentMessage(const QUuid& initialUserId,
                                    const QUuid& sessionId,

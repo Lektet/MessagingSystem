@@ -8,7 +8,7 @@
 #include "ErrorInfo.h"
 #include "MessageType.h"
 
-class ResponseMessage: public SessionMessage{
+class ResponseMessage: virtual public SessionMessage{
 public:
     explicit ResponseMessage(const QUuid& messageSessionId = QUuid(),
                              const MessageType messageType = MessageType::Invalid,
@@ -19,8 +19,8 @@ public:
     ErrorInfo getErrorInfo() const;
 
 protected:
-    virtual void initRootObject(QJsonObject &rootObj);
-    virtual bool initFromRootObject(const QJsonObject &rootObj);
+    virtual void initRootObject(QJsonObject &rootObj) override;
+    virtual bool initFromRootObject(const QJsonObject &rootObj) override;
 
 private:
     MessageType respondedToMessageType;

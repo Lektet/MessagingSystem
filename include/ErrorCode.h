@@ -12,7 +12,7 @@ enum class ErrorCode{
     AccessDenied,
     InvalidData,
     Conflict,
-    AuthError
+    AuthError//TODO: Use InternalError instead?
 };
 
 QString errorCodeToString(const ErrorCode val);

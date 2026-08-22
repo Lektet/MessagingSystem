@@ -26,6 +26,7 @@ GetHistoryResponseMessage::GetHistoryResponseMessage(const QUuid &sessionId,
                       MessageType::GetHistoryResponse,
                       MessageType::GetHistory,
                       messageErrorInfo),
+    SessionMessage(sessionId, MessageType::GetHistoryResponse),
     messages(std::move(messagesHistory))
 {
 

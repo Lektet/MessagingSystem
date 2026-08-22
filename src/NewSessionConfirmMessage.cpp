@@ -5,7 +5,8 @@
 NewSessionConfirmMessage::NewSessionConfirmMessage(const QUuid &initialUserId, const QUuid &sessionId) :
     NewSessionEstablishmentMessage(initialUserId,
                                      sessionId,
-                                     MessageType::NewSessionConfirm)
+                                     MessageType::NewSessionConfirm),
+    SessionMessage(sessionId, MessageType::NewSessionConfirm)
 {
 
 }

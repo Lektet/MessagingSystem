@@ -2,14 +2,17 @@
 #define NEWSESSIONSUCCESSRESPONSEMESSAGE_H
 
 #include "NewSessionEstablishmentMessage.h"
+#include "ResponseMessage.h"
 
 #include "UserRole.h"
 
-class NewSessionSuccessResponseMessage: public NewSessionEstablishmentMessage{
+class NewSessionResponseMessage: public NewSessionEstablishmentMessage, public ResponseMessage
+{
 public:
-    NewSessionSuccessResponseMessage(const QUuid& initialUserId = QUuid(),
+    NewSessionResponseMessage(const QUuid& initialUserId = QUuid(),
                                      const QUuid& sessionId = QUuid(),
-                                     const UserRole role = UserRole::Undefined);
+                                     const UserRole role = UserRole::Undefined,
+                                     const ErrorInfo& messageErrorInfo = {ErrorCode::NoError, ""});
 
     UserRole getUserRole();
 
