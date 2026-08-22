@@ -53,14 +53,15 @@ bool AddMessageMessage::initFromRootObject(const QJsonObject &rootObj)
     }
     auto messageObject = rootObj.value(MESSAGE_OBJECT_KEY).toObject();
 
-    auto username  = MessageUtils::getStringFromJsonObject(messageObject, MESSAGE_USERNAME_KEY);
-    if(username.isNull()){
+    bool success = true;
+    auto username  = MessageUtils::getStringFromJsonObject(messageObject, MESSAGE_USERNAME_KEY, success);
+    if(!success){
         return false;
     }
     messageData.username = std::move(username);
 
-    auto text  = MessageUtils::getStringFromJsonObject(messageObject, MESSAGE_TEXT_KEY);
-    if(text.isNull()){
+    auto text  = MessageUtils::getStringFromJsonObject(messageObject, MESSAGE_TEXT_KEY, success);
+    if(!success){
         return false;
     }
     messageData.text = std::move(text);

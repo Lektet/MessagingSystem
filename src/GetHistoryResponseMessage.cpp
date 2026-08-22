@@ -21,8 +21,11 @@ const QString MESSAGE_POST_TIME_KEY = "PostTime";
 // }
 
 GetHistoryResponseMessage::GetHistoryResponseMessage(const QUuid &sessionId,
-                                                     std::vector<ChatMessageData> messagesHistory) :
-    SessionMessage(sessionId, MessageType::GetHistoryResponse),
+                                                     std::vector<ChatMessageData> messagesHistory, const ErrorInfo messageErrorInfo) :
+    ResponseMessage(sessionId,
+                      MessageType::GetHistoryResponse,
+                      MessageType::GetHistory,
+                      messageErrorInfo),
     messages(std::move(messagesHistory))
 {
 
@@ -35,7 +38,7 @@ std::vector<ChatMessageData> GetHistoryResponseMessage::getMessagesHistory() con
 
 void GetHistoryResponseMessage::initRootObject(QJsonObject &rootObj)
 {
-    SessionMessage::initRootObject(rootObj);
+    ResponseMessage::initRootObject(rootObj);
     QJsonArray messagesToSend;
     for(auto& messageObject: messages){
         QJsonObject messageJsonObject;
@@ -51,7 +54,7 @@ void GetHistoryResponseMessage::initRootObject(QJsonObject &rootObj)
 
 bool GetHistoryResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    if(!SessionMessage::initFromRootObject(rootObj)){
+    if(!ResponseMessage::initFromRootObject(rootObj)){
         qWarning() << "Parent init failed";
         return false;
     }
@@ -76,30 +79,27 @@ bool GetHistoryResponseMessage::initFromRootObject(const QJsonObject &rootObj)
         auto messageJsonObject = messageJsonValue.toObject();
 
         ChatMessageData messageData;
-        if(!messageJsonObject.contains(MESSAGE_ID_KEY)){
-            qWarning() << "Message contains no id";
-            return false;
-        }
-        auto id = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_ID_KEY);
-        if(id.isNull()){
+        bool success = true;
+        auto id = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_ID_KEY, success);
+        if(!success){
             return false;
         }
         messageData.id = std::move(id);
 
-        auto username = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_USERNAME_KEY);
-        if(username.isNull()){
+        auto username = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_USERNAME_KEY, success);
+        if(!success){
             return false;
         }
         messageData.username = std::move(username);
 
-        auto text = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_TEXT_KEY);
-        if(text.isNull()){
+        auto text = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_TEXT_KEY, success);
+        if(!success){
             return false;
         }
         messageData.text = std::move(text);
 
-        auto postTime = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_POST_TIME_KEY);
-        if(postTime.isNull()){
+        auto postTime = MessageUtils::getStringFromJsonObject(messageJsonObject, MESSAGE_POST_TIME_KEY, success);
+        if(!success){
             return false;
         }
         messageData.postTime = std::move(postTime);

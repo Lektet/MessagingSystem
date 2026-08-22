@@ -8,12 +8,14 @@
 #include "ErrorInfo.h"
 #include "MessageType.h"
 
-class ResponseMessage: virtual public SessionMessage{
+class ResponseMessage: public SessionMessage{
 public:
     explicit ResponseMessage(const QUuid& messageSessionId = QUuid(),
                              const MessageType messageType = MessageType::Invalid,
-                             const ErrorInfo messageErrorInfo = {ErrorCode::Undefined, ""});
+                             const MessageType messageRespondedToMessageTypeType = MessageType::Invalid,
+                             const ErrorInfo &messageErrorInfo = {ErrorCode::Undefined, ""});
 
+    MessageType getRespondedToMessageType() const;
     ErrorInfo getErrorInfo() const;
 
 protected:
@@ -21,6 +23,7 @@ protected:
     virtual bool initFromRootObject(const QJsonObject &rootObj);
 
 private:
+    MessageType respondedToMessageType;
     ErrorInfo errorInfo;
 };
 

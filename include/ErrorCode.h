@@ -8,7 +8,11 @@ enum class ErrorCode{
     NoError,
     BadRequest,
     Unauthorized,
-    InternalError
+    InternalError,
+    AccessDenied,
+    InvalidData,
+    Conflict,
+    AuthError
 };
 
 QString errorCodeToString(const ErrorCode val);

@@ -9,7 +9,7 @@ SimpleMessage::SimpleMessage(MessageType type) :
     JsonSerializable(),
     messageType(type)
 {
-
+    int i = 0;
 }
 
 MessageType SimpleMessage::getMessageType() const
@@ -24,8 +24,9 @@ void SimpleMessage::initRootObject(QJsonObject &rootObj)
 
 bool SimpleMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    auto messageTypeString = MessageUtils::getStringFromJsonObject(rootObj, TYPE_KEY);
-    if(messageTypeString.isNull()){
+    bool success = true;
+    auto messageTypeString = MessageUtils::getStringFromJsonObject(rootObj, TYPE_KEY, success);
+    if(!success){
         return false;
     }
 

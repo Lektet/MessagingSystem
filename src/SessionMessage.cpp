@@ -11,7 +11,7 @@ SessionMessage::SessionMessage(const QUuid &messageSessionId,
     SimpleMessage(messageType),
     sessionId(messageSessionId)
 {
-
+    int i = 0;
 }
 
 QUuid SessionMessage::getSessionId() const
@@ -32,12 +32,12 @@ bool SessionMessage::initFromRootObject(const QJsonObject &rootObj)
         return false;
     }
 
-    auto sessionIdString = MessageUtils::getStringFromJsonObject(rootObj, SESSION_ID_KEY);
-    if(sessionIdString.isNull()){
-        qWarning() << "No session id";
+    bool success = true;
+    auto sessionIdString = MessageUtils::getStringFromJsonObject(rootObj, SESSION_ID_KEY, success);
+    if(!success){
         return false;
     }
-
     sessionId = QUuid(sessionIdString);
+
     return true;
 }

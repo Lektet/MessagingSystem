@@ -17,7 +17,8 @@ enum class MessageType{
     NewSessionResponse,
     NewSessionFailedResponse,
     NewSessionConfirm,
-    BadRequestResponse
+    BadRequestResponse,
+    ResponseMessage
 };
 
 QString messageTypeToString(const MessageType val);

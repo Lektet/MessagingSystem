@@ -1,4 +1,4 @@
-#include "NewSessionResponseMessage.h"
+#include "NewSessionSuccessResponseMessage.h"
 
 #include "MessageType.h"
 
@@ -27,7 +27,7 @@ void NewSessionSuccessResponseMessage::initRootObject(QJsonObject &rootObj)
 {
     NewSessionEstablishmentMessage::initRootObject(rootObj);
 
-    rootObj.insert(USER_ROLE_KEY, (int)userRole);
+    rootObj.insert(USER_ROLE_KEY, userRoleToString(userRole));
 }
 
 bool NewSessionSuccessResponseMessage::initFromRootObject(const QJsonObject &rootObj)
@@ -37,7 +37,12 @@ bool NewSessionSuccessResponseMessage::initFromRootObject(const QJsonObject &roo
         return false;
     }
 
-    userRole = UserRole(MessageUtils::getIntFromJsonObject(rootObj, USER_ROLE_KEY));
+    bool success = true;
+    auto userRoleString = MessageUtils::getStringFromJsonObject(rootObj, USER_ROLE_KEY, success);
+    if(!success){
+        return false;
+    }
+    userRole = userRoleFromString(userRoleString);
 
     return true;
 }

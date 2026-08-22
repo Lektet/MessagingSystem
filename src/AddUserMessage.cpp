@@ -51,16 +51,21 @@ bool AddUserMessage::initFromRootObject(const QJsonObject &rootObj)
         return false;
     }
 
-    username = MessageUtils::getStringFromJsonObject(rootObj, USERNAME_KEY);
-    if(username.isNull()){
+    bool success = true;
+    username = MessageUtils::getStringFromJsonObject(rootObj, USERNAME_KEY, success);
+    if(!success){
         return false;
     }
 
-    password = MessageUtils::getStringFromJsonObject(rootObj, PASSWORD_KEY);
-    if(password.isNull()){
+    password = MessageUtils::getStringFromJsonObject(rootObj, PASSWORD_KEY, success);
+    if(!success){
         return false;
     }
 
-    role = UserRole(MessageUtils::getIntFromJsonObject(rootObj, ROLE_KEY));
+    role = UserRole(MessageUtils::getIntFromJsonObject(rootObj, ROLE_KEY, success));
+    if(!success){
+        return false;
+    }
+
     return true;
 }

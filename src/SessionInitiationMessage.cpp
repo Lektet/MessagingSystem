@@ -23,11 +23,12 @@ void SessionInitiationMessage::initRootObject(QJsonObject &rootObj)
 
 bool SessionInitiationMessage::initFromRootObject(const QJsonObject &rootObj)
 {
-    auto userIdString = MessageUtils::getStringFromJsonObject(rootObj, USER_ID_KEY);
-    if(userIdString.isNull()){
+    bool success = true;
+    auto userIdString = MessageUtils::getStringFromJsonObject(rootObj, USER_ID_KEY, success);
+    if(!success){
         return false;
     }
-
     userId = QUuid(userIdString);
+
     return true;
 }

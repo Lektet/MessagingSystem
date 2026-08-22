@@ -32,8 +32,8 @@ add_library(MessagingSystem STATIC
     include/NewSessionConfirmMessage.h
     include/NewSessionEstablishmentMessage.h
     include/NewSessionFailedResponseMessage.h
+    include/NewSessionSuccessResponseMessage.h
     include/NewSessionRequestMessage.h
-    include/NewSessionResponseMessage.h
     include/NotificationMessage.h
     include/NotificationType.h
     include/ResponseMessage.h
@@ -61,8 +61,8 @@ add_library(MessagingSystem STATIC
     src/NewSessionConfirmMessage.cpp
     src/NewSessionEstablishmentMessage.cpp
     src/NewSessionFailedResponseMessage.cpp
+    src/NewSessionSuccessResponseMessage.cpp
     src/NewSessionRequestMessage.cpp
-    src/NewSessionResponseMessage.cpp
     src/NotificationMessage.cpp
     src/NotificationType.cpp
     src/SessionInitiationMessage.cpp

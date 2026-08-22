@@ -32,9 +32,9 @@ namespace MessageUtils
 
     MessageType getMessageType(const QJsonDocument& document);
 
-    QString getStringFromJsonObject(const QJsonObject& obj, const QString& key);
-    bool getBoolFromJsonObject(const QJsonObject& obj, const QString& key);
-    int getIntFromJsonObject(const QJsonObject& obj, const QString& key);
+    QString getStringFromJsonObject(const QJsonObject& obj, const QString& key, bool& success);
+    bool getBoolFromJsonObject(const QJsonObject& obj, const QString& key, bool& success);
+    int getIntFromJsonObject(const QJsonObject& obj, const QString& key, bool& success);
 }
 
 #endif // MESSAGESCREATION_H

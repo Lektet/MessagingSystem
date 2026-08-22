@@ -38,8 +38,9 @@ bool NotificationMessage::initFromRootObject(const QJsonObject &rootObj)
         return false;
     }
 
-    auto notificationTypeString = MessageUtils::getStringFromJsonObject(rootObj, NOTIFICATION_TYPE_KEY);
-    if(notificationTypeString.isNull()){
+    bool success = true;
+    auto notificationTypeString = MessageUtils::getStringFromJsonObject(rootObj, NOTIFICATION_TYPE_KEY, success);
+    if(!success){
         return false;
     }
 

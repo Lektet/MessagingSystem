@@ -8,11 +8,12 @@
 
 #include "ChatMessageData.h"
 
-class GetHistoryResponseMessage : public SessionMessage
+class GetHistoryResponseMessage : public ResponseMessage
 {
 public:
     GetHistoryResponseMessage(const QUuid& sessionId = QUuid(),
-                              std::vector<ChatMessageData> messagesHistory = std::vector<ChatMessageData>());
+                              std::vector<ChatMessageData> messagesHistory = std::vector<ChatMessageData>(),
+                              const ErrorInfo messageErrorInfo = {ErrorCode::Undefined, ""});
 
     std::vector<ChatMessageData> getMessagesHistory() const;
 

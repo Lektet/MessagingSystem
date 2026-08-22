@@ -32,6 +32,11 @@ bool AddUserResponseMessage::initFromRootObject(const QJsonObject &rootObj)
         return false;
     }
 
-    result = MessageUtils::getBoolFromJsonObject(rootObj, RESULT_KEY);
+    bool success = true;
+    result = MessageUtils::getBoolFromJsonObject(rootObj, RESULT_KEY, success);
+    if(!success){
+        return false;
+    }
+
     return true;
 }

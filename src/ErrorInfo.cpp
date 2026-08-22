@@ -30,21 +30,17 @@ bool loadErrorInfoFromJson(ErrorInfo &errorInfo, const QJsonObject &obj)
     }
 
     auto errorDataObj = obj.value(RESULT_INFO_OBJECT_KEY).toObject();
-    if(!errorDataObj.contains(RESULT_CODE_KEY)){
-        qWarning() << "Json error data object contains no key for error code";
-        return false;
-    }
 
-    auto resultCodeStr = MessageUtils::getStringFromJsonObject(errorDataObj, RESULT_CODE_KEY);
-    if(resultCodeStr.isNull()){
-        qWarning() << "Failed to get result code from Json object";
+    bool success = true;
+    auto resultCodeStr = MessageUtils::getStringFromJsonObject(errorDataObj, RESULT_CODE_KEY, success);
+    if(!success){
         return false;
     }
     errorInfo.errorCode = errorCodeFromString(resultCodeStr);
 
-    auto errorDescription = MessageUtils::getStringFromJsonObject(errorDataObj, ERROR_DESCRIPTION_KEY);
-    if(errorDescription.isNull()){
-        qWarning() << "Failed to get error description from Json object";
+    auto errorDescription = MessageUtils::getStringFromJsonObject(errorDataObj, ERROR_DESCRIPTION_KEY, success);
+    if(!success){
+        return false;
     }
     errorInfo.errorDescription = std::move(errorDescription);
 
