@@ -7,7 +7,8 @@
 std::map<UserRole, QString> userRoleStrings = {
     {UserRole::Undefined, "Invalid"},
     {UserRole::User, "User"},
-    {UserRole::Admin, "Admin"}
+    {UserRole::Admin, "Admin"},
+    {UserRole::Guest, "Guest"}
 };
 
 QString userRoleToString(const UserRole val)

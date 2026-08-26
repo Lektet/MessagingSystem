@@ -6,7 +6,8 @@
 enum class UserRole{
     Undefined,
     User,
-    Admin
+    Admin,
+    Guest
 };
 
 QString userRoleToString(const UserRole val);

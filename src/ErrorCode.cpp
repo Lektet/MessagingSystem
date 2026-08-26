@@ -12,8 +12,7 @@ std::map<ErrorCode, QString> errorCodeStrings = {
     {ErrorCode::InternalError, "InternalError"},
     {ErrorCode::AccessDenied, "AccessDenied"},
     {ErrorCode::InvalidData, "InvalidData"},
-    {ErrorCode::Conflict, "Conflict"},
-    {ErrorCode::AuthError, "AuthError"}
+    {ErrorCode::Conflict, "Conflict"}
 };
 
 QString errorCodeToString(const ErrorCode val)
