@@ -6,8 +6,8 @@
 
 std::map<MessageType, QString> requestTypeStrings = {
     {MessageType::Invalid, "Invalid"},
-    {MessageType::GetHistory, "GetHistory"},
-    {MessageType::GetHistoryResponse, "GetHistoryResponse"},
+    {MessageType::GetChatMessages, "GetChatMessages"},
+    {MessageType::GetChatMessagesResponse, "GetChatMessagesResponse"},
     {MessageType::AddMessage, "SendMessage"},
     {MessageType::AddMessageResponse, "SendMessageResponse"},
     {MessageType::Notification, "Notification"},

@@ -1,4 +1,4 @@
-#include "GetHistoryResponseMessage.h"
+#include "GetChatMessagesResponseMessage.h"
 
 #include <QJsonArray>
 
@@ -12,7 +12,7 @@ const QString MESSAGE_USERNAME_KEY = "Username";
 const QString MESSAGE_TEXT_KEY = "Text";
 const QString MESSAGE_POST_TIME_KEY = "PostTime";
 
-// GetHistoryResponseMessage::GetHistoryResponseMessage() :
+// GetChatMessagesResponseMessage::GetChatMessagesResponseMessage() :
 //     SimpleMessage(MessageType::GetHistoryResponse),
 //     SessionMessage(QUuid()),
 //     messages(std::vector<ChatMessageData>())
@@ -20,24 +20,24 @@ const QString MESSAGE_POST_TIME_KEY = "PostTime";
 
 // }
 
-GetHistoryResponseMessage::GetHistoryResponseMessage(const QUuid &sessionId,
+GetChatMessagesResponseMessage::GetChatMessagesResponseMessage(const QUuid &sessionId,
                                                      std::vector<ChatMessageData> messagesHistory, const ErrorInfo messageErrorInfo) :
     ResponseMessage(sessionId,
-                      MessageType::GetHistoryResponse,
-                      MessageType::GetHistory,
+                      MessageType::GetChatMessagesResponse,
+                      MessageType::GetChatMessages,
                       messageErrorInfo),
-    SessionMessage(sessionId, MessageType::GetHistoryResponse),
+    SessionMessage(sessionId, MessageType::GetChatMessagesResponse),
     messages(std::move(messagesHistory))
 {
 
 }
 
-std::vector<ChatMessageData> GetHistoryResponseMessage::getMessagesHistory() const
+std::vector<ChatMessageData> GetChatMessagesResponseMessage::getMessagesHistory() const
 {
     return messages;
 }
 
-void GetHistoryResponseMessage::initRootObject(QJsonObject &rootObj)
+void GetChatMessagesResponseMessage::initRootObject(QJsonObject &rootObj)
 {
     ResponseMessage::initRootObject(rootObj);
     QJsonArray messagesToSend;
@@ -53,7 +53,7 @@ void GetHistoryResponseMessage::initRootObject(QJsonObject &rootObj)
     rootObj.insert(MESSAGES_KEY, messagesToSend);
 }
 
-bool GetHistoryResponseMessage::initFromRootObject(const QJsonObject &rootObj)
+bool GetChatMessagesResponseMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     if(!ResponseMessage::initFromRootObject(rootObj)){
         qWarning() << "Parent init failed";

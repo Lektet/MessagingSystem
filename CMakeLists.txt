@@ -20,8 +20,8 @@ add_library(MessagingSystem STATIC
     include/Constants.h
     include/ErrorCode.h
     include/ErrorInfo.h
-    include/GetHistoryMessage.h
-    include/GetHistoryResponseMessage.h
+    include/GetChatMessagesMessage.h
+    include/GetChatMessagesResponseMessage.h
     include/JsonSerializable.h
     include/MessageType.h
     include/MessageUtils.h
@@ -45,8 +45,8 @@ add_library(MessagingSystem STATIC
     src/ErrorInfo.cpp
     src/ChangeUserPasswordMessage.cpp
     src/ChatMessageData.cpp
-    src/GetHistoryMessage.cpp
-    src/GetHistoryResponseMessage.cpp
+    src/GetChatMessagesMessage.cpp
+    src/GetChatMessagesResponseMessage.cpp
     src/JsonSerializable.cpp
     src/MessageType.cpp
     src/MessageUtils.cpp

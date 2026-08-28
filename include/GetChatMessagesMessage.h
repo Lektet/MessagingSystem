@@ -1,19 +1,19 @@
-#ifndef GETHISTORYMESSAGE_H
-#define GETHISTORYMESSAGE_H
+#ifndef GETCHATMESSAGESMESSAGE_H
+#define GETCHATMESSAGESMESSAGE_H
 
 #include "SessionMessage.h"
 
 enum class MessageType;
 
-class GetHistoryMessage : public SessionMessage
+class GetChatMessagesMessage : public SessionMessage
 {
 
 public:
-    GetHistoryMessage(const QUuid& sessionId = QUuid());
+    GetChatMessagesMessage(const QUuid& sessionId = QUuid());
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;
     virtual bool initFromRootObject(const QJsonObject &rootObj) override;
 };
 
-#endif // GETHISTORYMESSAGE_H
+#endif // GETCHATMESSAGESMESSAGE_H

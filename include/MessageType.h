@@ -5,8 +5,8 @@
 
 enum class MessageType{
     Invalid,
-    GetHistory,
-    GetHistoryResponse,
+    GetChatMessages,
+    GetChatMessagesResponse,
     AddMessage,
     AddMessageResponse,
     AddUser,

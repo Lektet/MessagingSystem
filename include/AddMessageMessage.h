@@ -5,10 +5,10 @@
 
 #include "NewChatMessageData.h"
 
-class AddMessageMessage : public SessionMessage
+class AddChatMessageMessage : public SessionMessage
 {
 public:
-    AddMessageMessage(const QUuid& sessionId = QUuid(),
+    AddChatMessageMessage(const QUuid& sessionId = QUuid(),
                       const NewChatMessageData& chatMessageData = NewChatMessageData());
 
     QString getMessageUsername() const;

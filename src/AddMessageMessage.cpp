@@ -7,29 +7,29 @@ const QString MESSAGE_OBJECT_KEY = "MessageObject";
 const QString MESSAGE_USERNAME_KEY = "Username";
 const QString MESSAGE_TEXT_KEY = "Text";
 
-AddMessageMessage::AddMessageMessage(const QUuid &sessionId, const NewChatMessageData& chatMessageData) :
+AddChatMessageMessage::AddChatMessageMessage(const QUuid &sessionId, const NewChatMessageData& chatMessageData) :
     SessionMessage(sessionId, MessageType::AddMessage),
     messageData(chatMessageData)
 {
 
 }
 
-QString AddMessageMessage::getMessageUsername() const
+QString AddChatMessageMessage::getMessageUsername() const
 {
     return messageData.username;
 }
 
-QString AddMessageMessage::getMessageText() const
+QString AddChatMessageMessage::getMessageText() const
 {
     return messageData.text;
 }
 
-NewChatMessageData AddMessageMessage::getChatMessageData() const
+NewChatMessageData AddChatMessageMessage::getChatMessageData() const
 {
     return messageData;
 }
 
-void AddMessageMessage::initRootObject(QJsonObject &rootObj)
+void AddChatMessageMessage::initRootObject(QJsonObject &rootObj)
 {
     SessionMessage::initRootObject(rootObj);
 
@@ -40,7 +40,7 @@ void AddMessageMessage::initRootObject(QJsonObject &rootObj)
     rootObj.insert(MESSAGE_OBJECT_KEY, messageObject);
 }
 
-bool AddMessageMessage::initFromRootObject(const QJsonObject &rootObj)
+bool AddChatMessageMessage::initFromRootObject(const QJsonObject &rootObj)
 {
     if(!SessionMessage::initFromRootObject(rootObj)){
         qWarning() << "Parent init failed";
