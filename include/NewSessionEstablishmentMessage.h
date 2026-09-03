@@ -7,7 +7,7 @@
 
 class NewSessionEstablishmentMessage: public SessionInitiationMessage, virtual public SessionMessage{
 public:
-    NewSessionEstablishmentMessage(const QUuid& initialUserId,
+    explicit NewSessionEstablishmentMessage(const QUuid& initialUserId,
                                    const QUuid& sessionId,
                                    const MessageType messageType = MessageType::Invalid);
 

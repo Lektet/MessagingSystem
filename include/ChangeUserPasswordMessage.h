@@ -5,7 +5,7 @@
 
 class ChangeUserPasswordMessage: public SessionMessage{
 public:
-    ChangeUserPasswordMessage(const QUuid& sessionId = QUuid(),
+    explicit ChangeUserPasswordMessage(const QUuid& sessionId = QUuid(),
                    const QString& targetUsername = QString(),
                    const QString& newPassword = QString());
 

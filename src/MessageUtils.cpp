@@ -79,3 +79,22 @@ int MessageUtils::getIntFromJsonObject(const QJsonObject &obj, const QString &ke
     success = true;
     return val.toInt();
 }
+
+MessageType MessageUtils::findResponseMesssageType(const MessageType messageType)
+{
+    static std::unordered_map<MessageType, MessageType> messageTypeToResponseType ={
+        {MessageType::AddMessage, MessageType::AddMessageResponse},
+        {MessageType::AddUser, MessageType::AddUserResponse},
+        {MessageType::DeleteUser, MessageType::DeleteUserResponse},
+        {MessageType::NewSessionRequest, MessageType::NewSessionResponse},
+        {MessageType::GetChatMessages, MessageType::GetChatMessagesResponse},
+        {MessageType::ChangeUserPassword, MessageType::ChangeUserPasswordResponse}
+    };
+
+    if(messageTypeToResponseType.contains(messageType)){
+        return messageTypeToResponseType[messageType];
+    }
+    else{
+        return MessageType::Invalid;
+    }
+}

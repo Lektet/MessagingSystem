@@ -17,7 +17,6 @@ NewSessionResponseMessage::NewSessionResponseMessage(
                                      MessageType::NewSessionResponse),
     ResponseMessage(sessionId,
                       MessageType::NewSessionResponse,
-                      MessageType::NewSessionRequest,
                       messageErrorInfo),
     userRole(role)
 {

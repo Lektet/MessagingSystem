@@ -24,7 +24,6 @@ GetChatMessagesResponseMessage::GetChatMessagesResponseMessage(const QUuid &sess
                                                      std::vector<ChatMessageData> messagesHistory, const ErrorInfo messageErrorInfo) :
     ResponseMessage(sessionId,
                       MessageType::GetChatMessagesResponse,
-                      MessageType::GetChatMessages,
                       messageErrorInfo),
     SessionMessage(sessionId, MessageType::GetChatMessagesResponse),
     messages(std::move(messagesHistory))

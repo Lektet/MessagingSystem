@@ -11,12 +11,16 @@ enum class MessageType{
     AddMessageResponse,
     AddUser,
     AddUserResponse,
+    DeleteUser,
+    DeleteUserResponse,
     ChangeUserPassword,
+    ChangeUserPasswordResponse,
     Notification,
     NewSessionRequest,
     NewSessionResponse,
     NewSessionFailedResponse,
     NewSessionConfirm,
+    NewSessionConfirmFailedResponse,
     BadRequestResponse,
     ResponseMessage
 };

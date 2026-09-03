@@ -8,7 +8,7 @@ enum class MessageType;
 class SimpleMessage : virtual public JsonSerializable
 {
 public:
-    SimpleMessage(MessageType type);
+    explicit SimpleMessage(MessageType type);
 
     MessageType getMessageType() const;
 

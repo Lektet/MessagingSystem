@@ -11,7 +11,7 @@
 class SessionMessage : public SimpleMessage
 {
 public:
-    SessionMessage(const QUuid& messageSessionId = QUuid(),
+    explicit SessionMessage(const QUuid& messageSessionId = QUuid(),
                    MessageType messageType = MessageType::Invalid);
 
     QUuid getSessionId() const;

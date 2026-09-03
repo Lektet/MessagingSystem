@@ -9,7 +9,7 @@
 class NewSessionResponseMessage: public NewSessionEstablishmentMessage, public ResponseMessage
 {
 public:
-    NewSessionResponseMessage(const QUuid& initialUserId = QUuid(),
+    explicit NewSessionResponseMessage(const QUuid& initialUserId = QUuid(),
                                      const QUuid& sessionId = QUuid(),
                                      const UserRole role = UserRole::Undefined,
                                      const ErrorInfo& messageErrorInfo = {ErrorCode::NoError, ""});

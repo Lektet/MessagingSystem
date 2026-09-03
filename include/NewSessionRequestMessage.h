@@ -6,7 +6,7 @@
 
 class NewSessionRequestMessage: public SimpleMessage, public SessionInitiationMessage{
 public:
-    NewSessionRequestMessage(const QUuid& initialUserId = QUuid(),
+    explicit NewSessionRequestMessage(const QUuid& initialUserId = QUuid(),
                              const QString& authUsername = QString(),
                              const QString& authPassword = QString());
 

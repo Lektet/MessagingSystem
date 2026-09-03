@@ -18,6 +18,7 @@ add_library(MessagingSystem STATIC
     include/ChangeUserPasswordMessage.h
     include/ChatMessageData.h
     include/Constants.h
+    include/DeleteUserMessage.h
     include/ErrorCode.h
     include/ErrorInfo.h
     include/GetChatMessagesMessage.h
@@ -41,6 +42,7 @@ add_library(MessagingSystem STATIC
     include/utils.h
     src/AddMessageMessage.cpp
     src/AddUserMessage.cpp
+    src/DeleteUserMessage.cpp
     src/ErrorCode.cpp
     src/ErrorInfo.cpp
     src/ChangeUserPasswordMessage.cpp

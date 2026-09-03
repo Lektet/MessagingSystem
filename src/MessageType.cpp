@@ -10,14 +10,19 @@ std::map<MessageType, QString> requestTypeStrings = {
     {MessageType::GetChatMessagesResponse, "GetChatMessagesResponse"},
     {MessageType::AddMessage, "SendMessage"},
     {MessageType::AddMessageResponse, "SendMessageResponse"},
+    {MessageType::AddUser, "AddUser"},
+    {MessageType::AddUserResponse, "AddUserResponse"},
+    {MessageType::DeleteUser, "DeleteUser"},
+    {MessageType::DeleteUserResponse, "DeleteUserResponse"},
+    {MessageType::ChangeUserPassword, "ChangeUserPassword"},
+    {MessageType::ChangeUserPasswordResponse, "ChangeUserPasswordResponse"},
     {MessageType::Notification, "Notification"},
     {MessageType::NewSessionRequest, "NewSessionRequest"},
     {MessageType::NewSessionFailedResponse, "NewSessionFailedResponse"},
     {MessageType::NewSessionResponse, "NewSessionResponse"},
     {MessageType::NewSessionConfirm, "NewSessionConfirm"},
+    {MessageType::NewSessionConfirmFailedResponse, "NewSessionConfirmFailedResponse"},
     {MessageType::BadRequestResponse, "BadRequestResponse"},
-    {MessageType::AddUser, "AddUser"},
-    {MessageType::AddUserResponse, "AddUserResponse"},
     {MessageType::ResponseMessage, "ResponseMessage"}
 };
 

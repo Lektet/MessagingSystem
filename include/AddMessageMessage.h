@@ -8,7 +8,7 @@
 class AddChatMessageMessage : public SessionMessage
 {
 public:
-    AddChatMessageMessage(const QUuid& sessionId = QUuid(),
+    explicit AddChatMessageMessage(const QUuid& sessionId = QUuid(),
                       const NewChatMessageData& chatMessageData = NewChatMessageData());
 
     QString getMessageUsername() const;

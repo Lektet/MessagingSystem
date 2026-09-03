@@ -6,7 +6,7 @@
 
 std::map<ErrorCode, QString> errorCodeStrings = {
     {ErrorCode::Undefined, "Undefined"},
-    {ErrorCode::NoError, "OK"},
+    {ErrorCode::NoError, "NoError"},
     {ErrorCode::BadRequest, "BadRequest"},
     {ErrorCode::Unauthorized, "Unauthorized"},
     {ErrorCode::InternalError, "InternalError"},

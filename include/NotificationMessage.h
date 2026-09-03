@@ -8,7 +8,7 @@
 class NotificationMessage : public SessionMessage
 {    
 public:
-    NotificationMessage(const QUuid& sessionId = QUuid(),
+    explicit NotificationMessage(const QUuid& sessionId = QUuid(),
                         NotificationType type = NotificationType::Invalid);
 
     void setNotificationType(NotificationType type);

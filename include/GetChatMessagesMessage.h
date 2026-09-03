@@ -9,7 +9,7 @@ class GetChatMessagesMessage : public SessionMessage
 {
 
 public:
-    GetChatMessagesMessage(const QUuid& sessionId = QUuid());
+    explicit GetChatMessagesMessage(const QUuid& sessionId = QUuid());
 
 protected:
     virtual void initRootObject(QJsonObject &rootObj) override;

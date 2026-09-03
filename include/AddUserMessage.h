@@ -7,7 +7,7 @@
 
 class AddUserMessage: public SessionMessage{
 public:
-    AddUserMessage(const QUuid& sessionId = QUuid(),
+    explicit AddUserMessage(const QUuid& sessionId = QUuid(),
                    const QString& newUsername = QString(),
                    const QString& newPassword = QString(),
                    const UserRole newUserRole = UserRole::User);

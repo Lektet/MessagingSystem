@@ -46,3 +46,13 @@ bool loadErrorInfoFromJson(ErrorInfo &errorInfo, const QJsonObject &obj)
 
     return true;
 }
+
+
+QDebug operator<<(QDebug debug, const ErrorInfo &errorInfo)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << '(' << errorCodeToString(errorInfo.errorCode) <<
+        ", " << errorInfo.errorDescription << ')';
+
+    return debug;
+}

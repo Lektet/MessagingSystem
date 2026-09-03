@@ -11,9 +11,9 @@
 class GetChatMessagesResponseMessage : public ResponseMessage
 {
 public:
-    GetChatMessagesResponseMessage(const QUuid& sessionId = QUuid(),
+    explicit GetChatMessagesResponseMessage(const QUuid& sessionId = QUuid(),
                               std::vector<ChatMessageData> messagesHistory = std::vector<ChatMessageData>(),
-                              const ErrorInfo messageErrorInfo = {ErrorCode::Undefined, ""});
+                              const ErrorInfo messageErrorInfo = {ErrorCode::NoError, ""});
 
     std::vector<ChatMessageData> getMessagesHistory() const;
 

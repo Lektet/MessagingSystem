@@ -12,10 +12,8 @@ class ResponseMessage: virtual public SessionMessage{
 public:
     explicit ResponseMessage(const QUuid& messageSessionId = QUuid(),
                              const MessageType messageType = MessageType::Invalid,
-                             const MessageType messageRespondedToMessageTypeType = MessageType::Invalid,
-                             const ErrorInfo &messageErrorInfo = {ErrorCode::Undefined, ""});
+                             const ErrorInfo &messageErrorInfo = {ErrorCode::NoError, ""});
 
-    MessageType getRespondedToMessageType() const;
     ErrorInfo getErrorInfo() const;
 
 protected:
@@ -23,7 +21,6 @@ protected:
     virtual bool initFromRootObject(const QJsonObject &rootObj) override;
 
 private:
-    MessageType respondedToMessageType;
     ErrorInfo errorInfo;
 };
 

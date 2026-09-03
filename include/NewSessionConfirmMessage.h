@@ -5,7 +5,7 @@
 
 class NewSessionConfirmMessage: public NewSessionEstablishmentMessage{
 public:
-    NewSessionConfirmMessage(const QUuid& initialUserId = QUuid(),
+    explicit NewSessionConfirmMessage(const QUuid& initialUserId = QUuid(),
                              const QUuid& sessionId = QUuid());
 
 protected:
