@@ -36,7 +36,7 @@ std::vector<ChatMessageData> GetChatMessagesResponseMessage::getMessagesHistory(
     return messages;
 }
 
-void GetChatMessagesResponseMessage::initRootObject(QJsonObject &rootObj)
+void GetChatMessagesResponseMessage::initRootObject(QJsonObject &rootObj) const
 {
     ResponseMessage::initRootObject(rootObj);
     QJsonArray messagesToSend;

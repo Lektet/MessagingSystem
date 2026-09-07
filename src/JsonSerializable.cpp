@@ -7,7 +7,7 @@ JsonSerializable::JsonSerializable()
 
 }
 
-QJsonDocument JsonSerializable::toJson()
+QJsonDocument JsonSerializable::toJson() const
 {
     QJsonObject object;
     initRootObject(object);

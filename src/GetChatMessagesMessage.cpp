@@ -8,7 +8,7 @@ GetChatMessagesMessage::GetChatMessagesMessage(const QUuid &sessionId) :
 
 }
 
-void GetChatMessagesMessage::initRootObject(QJsonObject &rootObj)
+void GetChatMessagesMessage::initRootObject(QJsonObject &rootObj) const
 {
     SessionMessage::initRootObject(rootObj);
 }

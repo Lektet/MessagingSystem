@@ -11,7 +11,7 @@ NewSessionConfirmMessage::NewSessionConfirmMessage(const QUuid &initialUserId, c
 
 }
 
-void NewSessionConfirmMessage::initRootObject(QJsonObject &rootObj)
+void NewSessionConfirmMessage::initRootObject(QJsonObject &rootObj) const
 {
     NewSessionEstablishmentMessage::initRootObject(rootObj);
 }

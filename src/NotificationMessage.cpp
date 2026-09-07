@@ -23,7 +23,7 @@ NotificationType NotificationMessage::getNotificationType() const
     return notificationType;
 }
 
-void NotificationMessage::initRootObject(QJsonObject &rootObj)
+void NotificationMessage::initRootObject(QJsonObject &rootObj) const
 {
     SimpleMessage::initRootObject(rootObj);
     SessionMessage::initRootObject(rootObj);

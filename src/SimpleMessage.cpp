@@ -17,7 +17,7 @@ MessageType SimpleMessage::getMessageType() const
     return messageType;
 }
 
-void SimpleMessage::initRootObject(QJsonObject &rootObj)
+void SimpleMessage::initRootObject(QJsonObject &rootObj) const
 {
     rootObj.insert(TYPE_KEY, messageTypeToString(messageType));
 }

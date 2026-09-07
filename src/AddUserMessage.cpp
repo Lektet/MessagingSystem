@@ -35,7 +35,7 @@ UserRole AddUserMessage::getRole() const
     return role;
 }
 
-void AddUserMessage::initRootObject(QJsonObject &rootObj)
+void AddUserMessage::initRootObject(QJsonObject &rootObj) const
 {
     SessionMessage::initRootObject(rootObj);
 

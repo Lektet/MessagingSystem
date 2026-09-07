@@ -16,7 +16,7 @@ QString DeleteUserMessage::getUsername() const
     return username;
 }
 
-void DeleteUserMessage::initRootObject(QJsonObject &rootObj)
+void DeleteUserMessage::initRootObject(QJsonObject &rootObj) const
 {
     SessionMessage::initRootObject(rootObj);
 

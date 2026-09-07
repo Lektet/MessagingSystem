@@ -13,7 +13,7 @@ public:
     QString getPassword() const;
 
 protected:
-    virtual void initRootObject(QJsonObject &rootObj) override;
+    virtual void initRootObject(QJsonObject &rootObj) const override;
     virtual bool initFromRootObject(const QJsonObject &rootObj) override;
 
 private:

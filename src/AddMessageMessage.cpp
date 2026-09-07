@@ -29,7 +29,7 @@ NewChatMessageData AddChatMessageMessage::getChatMessageData() const
     return messageData;
 }
 
-void AddChatMessageMessage::initRootObject(QJsonObject &rootObj)
+void AddChatMessageMessage::initRootObject(QJsonObject &rootObj) const
 {
     SessionMessage::initRootObject(rootObj);
 

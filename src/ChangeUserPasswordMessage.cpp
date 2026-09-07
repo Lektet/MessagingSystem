@@ -27,7 +27,7 @@ QString ChangeUserPasswordMessage::getPassword() const
     return password;
 }
 
-void ChangeUserPasswordMessage::initRootObject(QJsonObject &rootObj)
+void ChangeUserPasswordMessage::initRootObject(QJsonObject &rootObj) const
 {
     SessionMessage::initRootObject(rootObj);
 

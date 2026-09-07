@@ -19,7 +19,7 @@ QUuid SessionMessage::getSessionId() const
     return sessionId;
 }
 
-void SessionMessage::initRootObject(QJsonObject &rootObj)
+void SessionMessage::initRootObject(QJsonObject &rootObj) const
 {
     SimpleMessage::initRootObject(rootObj);
     rootObj.insert(SESSION_ID_KEY, sessionId.toString());

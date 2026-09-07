@@ -18,7 +18,7 @@ ErrorInfo ResponseMessage::getErrorInfo() const
     return errorInfo;
 }
 
-void ResponseMessage::initRootObject(QJsonObject &rootObj)
+void ResponseMessage::initRootObject(QJsonObject &rootObj) const
 {
     SessionMessage::initRootObject(rootObj);
     saveErrorInfoToJson(rootObj, errorInfo);

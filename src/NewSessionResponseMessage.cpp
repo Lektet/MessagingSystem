@@ -28,7 +28,7 @@ UserRole NewSessionResponseMessage::getUserRole()
     return userRole;
 }
 
-void NewSessionResponseMessage::initRootObject(QJsonObject &rootObj)
+void NewSessionResponseMessage::initRootObject(QJsonObject &rootObj) const
 {
     SessionMessage::initRootObject(rootObj);
     NewSessionEstablishmentMessage::initRootObject(rootObj);

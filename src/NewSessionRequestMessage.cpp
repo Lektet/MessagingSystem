@@ -27,7 +27,7 @@ QString NewSessionRequestMessage::getPassword() const
     return password;
 }
 
-void NewSessionRequestMessage::initRootObject(QJsonObject &rootObj)
+void NewSessionRequestMessage::initRootObject(QJsonObject &rootObj) const
 {
     SimpleMessage::initRootObject(rootObj);
     SessionInitiationMessage::initRootObject(rootObj);

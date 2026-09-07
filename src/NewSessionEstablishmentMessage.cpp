@@ -9,7 +9,7 @@ NewSessionEstablishmentMessage::NewSessionEstablishmentMessage
 
 }
 
-void NewSessionEstablishmentMessage::initRootObject(QJsonObject &rootObj)
+void NewSessionEstablishmentMessage::initRootObject(QJsonObject &rootObj) const
 {
     SessionInitiationMessage::initRootObject(rootObj);
     SessionMessage::initRootObject(rootObj);

@@ -16,7 +16,7 @@ QUuid SessionInitiationMessage::getUserId()
     return userId;
 }
 
-void SessionInitiationMessage::initRootObject(QJsonObject &rootObj)
+void SessionInitiationMessage::initRootObject(QJsonObject &rootObj) const
 {
     rootObj.insert(USER_ID_KEY, userId.toString());
 }
