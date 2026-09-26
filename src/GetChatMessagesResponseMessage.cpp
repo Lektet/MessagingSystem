@@ -21,9 +21,11 @@ const QString MESSAGE_POST_TIME_KEY = "PostTime";
 // }
 
 GetChatMessagesResponseMessage::GetChatMessagesResponseMessage(const QUuid &sessionId,
-                                                     std::vector<ChatMessageData> messagesHistory, const ErrorInfo messageErrorInfo) :
+                                                     std::vector<ChatMessageData> messagesHistory,
+                                                               const MessageType messageType,
+                                                               const ErrorInfo messageErrorInfo) :
     ResponseMessage(sessionId,
-                      MessageType::GetChatMessagesResponse,
+                      messageType,
                       messageErrorInfo),
     SessionMessage(sessionId, MessageType::GetChatMessagesResponse),
     messages(std::move(messagesHistory))

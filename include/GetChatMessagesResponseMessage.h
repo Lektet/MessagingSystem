@@ -1,7 +1,6 @@
 #ifndef GETHISTORYRESPONSEMESSAGE_H
 #define GETHISTORYRESPONSEMESSAGE_H
 
-#include "SessionMessage.h"
 #include "ResponseMessage.h"
 
 #include <vector>
@@ -12,9 +11,10 @@ class GetChatMessagesResponseMessage : public ResponseMessage
 {
 public:
     explicit GetChatMessagesResponseMessage(const QUuid& sessionId = QUuid(),
-                              std::vector<ChatMessageData> messagesHistory = std::vector<ChatMessageData>(),
-                              const ErrorInfo messageErrorInfo = {ErrorCode::NoError, ""});
-
+                                            std::vector<ChatMessageData> messagesHistory = std::vector<ChatMessageData>(),
+                                            const MessageType messageType = MessageType::GetChatMessagesResponse,
+                                            const ErrorInfo messageErrorInfo = {ErrorCode::NoError, ""});
+    
     std::vector<ChatMessageData> getMessagesHistory() const;
 
 protected:

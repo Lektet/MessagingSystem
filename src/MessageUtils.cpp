@@ -88,6 +88,8 @@ MessageType MessageUtils::findResponseMesssageType(const MessageType messageType
         {MessageType::DeleteUser, MessageType::DeleteUserResponse},
         {MessageType::NewSessionRequest, MessageType::NewSessionResponse},
         {MessageType::GetChatMessages, MessageType::GetChatMessagesResponse},
+        {MessageType::GetChatMessagesCount, MessageType::GetChatMessagesCountResponse},
+        {MessageType::GetChatMessagesNearId, MessageType::GetChatMessagesNearIdResponse},
         {MessageType::ChangeUserPassword, MessageType::ChangeUserPasswordResponse}
     };
 

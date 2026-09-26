@@ -21,7 +21,15 @@ add_library(MessagingSystem STATIC
     include/DeleteUserMessage.h
     include/ErrorCode.h
     include/ErrorInfo.h
+    include/GetChatFirstMessageIdMessage.h
+    include/GetChatFirstMessageIdResponseMessage.h
+    include/GetChatLastMessageIdMessage.h
+    include/GetChatLastMessageIdResponseMessage.h
+    include/GetChatMessagesCountMessage.h
+    include/GetChatMessagesCountResponseMessage.h
+    include/GetChatMessageIdResponse.h
     include/GetChatMessagesMessage.h
+    include/GetChatMessagesNearIdMessage.h
     include/GetChatMessagesResponseMessage.h
     include/JsonSerializable.h
     include/MessageType.h
@@ -47,7 +55,15 @@ add_library(MessagingSystem STATIC
     src/ErrorInfo.cpp
     src/ChangeUserPasswordMessage.cpp
     src/ChatMessageData.cpp
+    src/GetChatFirstMessageIdMessage.cpp
+    src/GetChatFirstMessageIdResponseMessage.cpp
+    src/GetChatLastMessageIdMessage.cpp
+    src/GetChatLastMessageIdResponseMessage.cpp
+    src/GetChatMessagesCountMessage.cpp
+    src/GetChatMessagesCountResponseMessage.cpp
+    src/GetChatMessageIdResponse.cpp
     src/GetChatMessagesMessage.cpp
+    src/GetChatMessagesNearIdMessage.cpp
     src/GetChatMessagesResponseMessage.cpp
     src/JsonSerializable.cpp
     src/MessageType.cpp
